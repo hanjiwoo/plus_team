@@ -51,3 +51,6 @@
 - Firebase - 사용자 인증과 데이터베이스 등의 서버 기능 제공
 - React-router-dom - 클라이언트 사이드 라우팅. URL에 맞는 컴포넌트 렌더링
 - Styled-components - 자바스크립트로 스타일 관리. 재사용이 쉬운 컴포넌트를 만들고 동적 스타일링 용이
+
+#### 와이어프레임
+<img width="1260" alt="스크린샷 2023-12-26 오후 5 11 23" src="https://github.com/hanjiwoo/plus_team/assets/147472852/38b55338-523b-41ff-839c-2832403a4cb4">
