@@ -1,70 +1,39 @@
-# Getting Started with Create React App
+## 내배캠 React 3기 A-2조 심화 프로젝트
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+### 📢 프로젝트 개요
 
-## Available Scripts
+**23. 12. 26 - 24 .01 .03**
 
-In the project directory, you can run:
+- 프로젝트명: **Re-Play(React-Play-Game)**
+- 주제: 가볍게 여러가지 게임을 즐기며 소통 할 수 있는 사이트
+- 내용: 댓글, 좋아요 등의 활동을 남기며, 일상 속 남는 시간에 가볍게 게임을 즐길 수 있도록 개발한 사이트
 
-### `yarn start`
+### 👥 팀 소개
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- 팀명: 2조삭비 (如鳥數飛 : 여조삭비)
+- 팀원: 강호수, 안은지, 이아름, 최수인, 한지우
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
 
-### `yarn test`
+#### 필수요구사항
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### 📝 역할 분담
 
-### `yarn build`
+| 강호수      | 안은지      | 이아름      | 최수인      | 한지우           |
+| ----------- | ----------- | ----------- | ----------- | ----------- |
+| 캐치 마인드 | 테트리스 | 메인 페이지 | 순발력 게임 | 카드 맞추기 |
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### 🚩 개발 내용
+#### 💻 개발 환경
+- IDE: Visual Studio Code
+- OS: windows, Mac
+- Package Manager: Yarn Classic (v1.22.19)
+- React boilerplate: create-react-app
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+#### 📌 사용 기술
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- React - 사용자와 상호작용할 수 있는 UI를 효율적으로 구현
+- Redux Toolkit - 전역 상태 관리 도구
+- React Query - 비동기 관련 로직과 상태를 관리
+- Firebase - 사용자 인증과 데이터베이스 등의 서버 기능 제공
+- React-router-dom - 클라이언트 사이드 라우팅. URL에 맞는 컴포넌트 렌더링
+- Styled-components - 자바스크립트로 스타일 관리. 재사용이 쉬운 컴포넌트를 만들고 동적 스타일링 용이
