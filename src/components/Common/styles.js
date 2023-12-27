@@ -9,7 +9,7 @@ export const StHeader = styled.header`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background-color: var(--orange);
+  background-color: var(--red);
   color: black;
 `;
 
