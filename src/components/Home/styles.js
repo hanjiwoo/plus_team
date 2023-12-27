@@ -1,38 +1,42 @@
 import styled from "styled-components";
 
-export const ListWrapper = styled.section`
-  width: 70vw;
-  height: 500px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  max-width: 100%;
-  margin: 0 auto;
-  transition: all 0.2s;
-  :hover {
-    transform: scale(1.02);
-  }
-`;
-
 export const List = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
   flex-direction: column;
-  margin: auto 5px;
-  width: 200px;
-  height: 300px;
+  border-radius: 20px;
+  margin: 20px;
+  width: 600px;
+  height: 550px;
   background-color: var(--yellow);
+
+  &:hover {
+    border: 5px solid var(--purple);
+    transform: scale(1.05);
+  }
 `;
 
 export const Photo = styled.figure`
-  width: 100px;
-  height: 100px;
+  width: 400px;
+  height: 350px;
+  margin: 40px;
+  border-radius: 20px;
   overflow: hidden;
-  &img {
-    width: 100%;
-    height: 100%;
+  & img {
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    /* width: 100%;
+    height: 100%; */
   }
+`;
+
+export const StTitle = styled.div`
+  margin: 10px;
+  font-size: 40px;
+  color: var(--green);
+  text-shadow: -1px 0px black, 0px 1px black, 1px 0px black, 0px -1px black;
 `;
 
 export const StText = styled.div`
@@ -40,13 +44,15 @@ export const StText = styled.div`
   justify-content: space-between;
   align-items: center;
   flex-direction: column;
-  margin: 20px;
-  color: black;
+  margin: 25px;
+  font-size: 25px;
+  color: #fad652;
+  text-shadow: -1px 0px black, 0px 1px black, 1px 0px black, 0px -1px black;
 `;
 
 export const AllSlide = styled.div`
-  height: 450px;
-  margin: 50px 0;
+  height: 600px;
+  margin: 100px 0px;
 
   .slick-prev:hover:before,
   .slick-prev:focus:before,
@@ -92,7 +98,7 @@ export const AllSlide = styled.div`
     width: 15px;
     height: 15px;
     border-radius: 50%;
-    background-color: gray;
+    background-color: var(--red);
     text-align: center;
     content: "";
   }
