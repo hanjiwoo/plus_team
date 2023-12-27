@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
-import ggo from "../MemoryCardAsset/꼬부기.jpg";
-import phi from "../MemoryCardAsset/피카츄.jpg";
-import Mu from "../MemoryCardAsset/뮤.jpg";
-import pha from "../MemoryCardAsset/파이리.jpg";
-import isang from "../MemoryCardAsset/이상해씨.jpg";
-import ghi from "../MemoryCardAsset/지라치.jpg";
-import ing from "../MemoryCardAsset/잉어킹.jpg";
-import eve from "../MemoryCardAsset/이브이.jpg";
+import phi from "../../MemoryCardAsset/피카츄.jpg";
+import Mu from "../../MemoryCardAsset/뮤.jpg";
+import ggo from "../../MemoryCardAsset/꼬부기.jpg";
+import pha from "../../MemoryCardAsset/파이리.jpg";
+import isang from "../../MemoryCardAsset/이상해씨.jpg";
+import ghi from "../../MemoryCardAsset/지라치.jpg";
+import ing from "../../MemoryCardAsset/잉어킹.jpg";
+import eve from "../../MemoryCardAsset/이브이.jpg";
 
 import styled from "styled-components";
 import SingleCard from "./SingleCard";

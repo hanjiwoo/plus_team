@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import styled, { css } from "styled-components";
-import { gameList } from "../component/FakeList";
-import PostList from "../component/PostList";
+import { gameList } from "../components/Home/GameList";
+import PostList from "../components/memocard/PostList";
 
 export default function DetailPage() {
   const [like, setLIke] = useState(false);
