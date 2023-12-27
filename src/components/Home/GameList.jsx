@@ -13,7 +13,7 @@ export const gameList = [
   { id: "4", title: "메모리게임", photo: photo4 },
 ];
 
-export default function FakeList() {
+export default function GameList() {
   return (
     <ListWrapper>
       {gameList.map((game) => {
