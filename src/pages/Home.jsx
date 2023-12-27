@@ -1,10 +1,11 @@
-import Card from "components/Home/Card";
 import React from "react";
+import FakeList from "../component/FakeList";
 
 export default function Home() {
   return (
-    <>
-      <Card />
-    </>
+    <div>
+      Home
+      <FakeList />
+    </div>
   );
 }
