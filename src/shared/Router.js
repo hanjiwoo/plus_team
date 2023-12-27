@@ -4,6 +4,7 @@ import Layout from "../components/Common/Layout";
 import Home from "../pages/Home";
 import DetailPage from "../pages/DetailPage";
 import MemoryCardPage from "../pages/MemoryCardPage";
+import SpeedGamePage from "./../pages/SpeedGamePage";
 
 export default function Router() {
   return (
@@ -13,6 +14,7 @@ export default function Router() {
           <Route element={<Layout />}>
             <Route path="/" element={<Home />} />
             <Route path="/memorycard" element={<MemoryCardPage />} />
+            <Route path="/speedgame" element={<SpeedGamePage />} />
             <Route path="/detail/:id" element={<DetailPage />} />
             <Route path="*" element={<Navigate replace to="/" />} />
           </Route>
