@@ -3,13 +3,13 @@ import styled from "styled-components";
 export const StMain = styled.main`
   min-height: ${(props) => props.theme.mainHeight};
 `;
+
 // header.jsx
 export const StHeader = styled.header`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: ${(props) => props.theme.headerHeight};
-  background-color: ${(props) => props.theme.primaryColor};
+  background-color: var(--orange);
   color: black;
 `;
 
@@ -22,8 +22,9 @@ export const StLogo = styled.img`
   width: 200px;
   margin: 10px;
   cursor: pointer;
+
   &:hover {
-    border: solid #ffcc00;
+    transform: scale(1.05);
   }
 `;
 
@@ -41,16 +42,22 @@ export const Stbutton = styled.button`
   justify-content: center;
   align-items: center;
   gap: 50px;
+  background: transparent;
+  border: none;
   cursor: pointer;
-  &:hover {
-    border: solid #ffcc00;
-  }
 
   button {
     cursor: pointer;
     height: 30px;
     font-size: 14px;
+    background-color: var(--yellow);
     color: black;
+    border-radius: 8px;
+
+    &:hover {
+      border: solid var(--purple);
+      transform: scale(1.05);
+    }
   }
 `;
 
@@ -68,6 +75,8 @@ export const SearchInput = styled.input`
   display: flex;
   flex-direction: row;
   width: 220px;
+  border: none;
+  outline: none;
 `;
 
 export const SearchImage = styled.img`

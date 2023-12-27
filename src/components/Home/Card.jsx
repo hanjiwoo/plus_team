@@ -1,21 +1,20 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { StHeader } from "./styles";
 
 export default function Card() {
   return (
     <div>
-      <header>
-        <h1>게임 소개 사이트</h1>
-      </header>
+      <StHeader>
+        <h1>원하는 게임을 골라봐라</h1>
+      </StHeader>
       <main>
         <section>
-          <h2>주목할만한 게임</h2>
-          {/* 주목할만한 게임 정보 */}
-          <Link to="/game/featured">자세히 보기</Link>
+          <h2>게임 카드 보여주기</h2>
         </section>
       </main>
       <footer>
-        <p>2023 게임 소개 사이트</p>
+        <p>여기는 푸터임</p>
       </footer>
     </div>
   );
