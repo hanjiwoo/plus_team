@@ -1,5 +1,5 @@
 import React from "react";
-import FakeList from "../component/FakeList";
+import FakeList from "../components/Home/GameList";
 
 export default function Home() {
   return (
