@@ -1,46 +1,46 @@
-import React, { useState } from 'react';
-import styled from 'styled-components';
-import {auth} from 'firebase';
+import React, { useEffect, useState } from "react";
+import { useLocation } from 'react-router-dom';
+import styled from "styled-components";
+import { auth } from "../firebase";
 import {
-  signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
   updateProfile,
   GoogleAuthProvider,
-  signInWithPopup
-} from 'firebase/auth';
-import { useSetQuery } from 'hooks/useQueryHook';
-// import { useNavigate } from 'react-router-dom';
-// import { useDispatch } from 'react-redux';
-// import { modalClose } from '../../redux/modules/modalModules';
-// import swal from 'sweetalert2';
+  signInWithPopup,
+} from "firebase/auth";
 
 function Login() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [passwdCheck, setPasswdCheck] = useState('');
-  const [nickName, setNickName] = useState('');
-  const [isLogin, setIsLogin] = useState(true);
-//   const navigate = useNavigate();
-//   const dispatch = useDispatch();
+  const location = useLocation();
+  console.log(location)
+  const IsLogin = location.state.IsLogin;
 
-  const { mutate: setQuery } = useSetQuery({
-    document: 'user'
-  });
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [passwdCheck, setPasswdCheck] = useState("");
+  const [nickName, setNickName] = useState("");
+  const [isLogin, setIsLogin] = useState(IsLogin);
+
+  useEffect(() => {
+    // 
+  }, []);
 
   const login = async (e) => {
     e.preventDefault();
     try {
-      const userCredential = await signInWithEmailAndPassword(auth, email, password);
-      setEmail('');
-      setPassword('');
-    //   dispatch(modalClose());
-    //   navigate('/');
-      console.log(userCredential)
+      const userCredential = await signInWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+      setEmail("");
+      setPassword("");
+      console.log(userCredential);
     } catch (error) {
       const errorCode = error.code;
       const errorMessage = error.message;
-      console.log('error with LogIn', errorCode, errorMessage);
-      alert('등록되지 않은 회원이거나 유효하지 않은 이메일입니다.');
+      console.log("error with LogIn", errorCode, errorMessage);
+      alert("등록되지 않은 회원이거나 유효하지 않은 이메일입니다.");
     }
   };
 
@@ -48,23 +48,25 @@ function Login() {
     try {
       // Firebase Authentication을 사용하여 계정 생성
       e.preventDefault();
-      const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+      const userCredential = await createUserWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
       updateProfile(userCredential.user, {
-        displayName: nickName
+        displayName: nickName,
       });
-
       await auth.signOut();
-      setEmail('');
-      setPassword('');
-      setPasswdCheck('');
-      setNickName('');
+      setEmail("");
+      setPassword("");
+      setPasswdCheck("");
+      setNickName("");
       toggleonHandler();
-    //   swal('회원가입 완료!', '아하하', 'success');
     } catch (error) {
       const errorCode = error.code;
       const errorMessage = error.errorMessage;
-      console.log('error with signUp', errorCode, errorMessage);
-      alert('중복이거나 사용할 수 없는 이메일 입니다.');
+      console.log("error with signUp", errorCode, errorMessage);
+      alert("중복이거나 사용할 수 없는 이메일 입니다.");
     }
   };
 
@@ -73,46 +75,45 @@ function Login() {
 
     const Provider = new GoogleAuthProvider();
     Provider.setCustomParameters({
-      prompt: 'select_account'
+      prompt: "select_account",
     });
     try {
       const result = await signInWithPopup(auth, Provider);
-      const { uid, photoURL, displayName } = result.user;
-      setQuery({ fieldId: uid, data: { avatar: photoURL, uid, nickName: displayName } });
-    //   dispatch(modalClose());
-    //   navigate('/');
+      console.log(result.user);
+      console.log(result);
+      console.log(result.user.displayName);
     } catch (error) {
       const errorCode = error.code;
       const errorMessage = error.message;
-      console.log('error with googleLogIn', errorCode, errorMessage);
+      console.log("error with googleLogIn", errorCode, errorMessage);
     }
   };
 
   const togglehandle = () => {
-    setEmail('');
-    setPassword('');
+    setEmail("");
+    setPassword("");
     setIsLogin(false);
   };
 
   const toggleonHandler = () => {
-    setEmail('');
-    setPassword('');
-    setPasswdCheck('');
-    setNickName('');
+    setEmail("");
+    setPassword("");
+    setPasswdCheck("");
+    setNickName("");
     setIsLogin(true);
   };
 
   const onChange = (e) => {
     const {
-      target: { name, value }
+      target: { name, value },
     } = e;
-    if (name === 'email') {
+    if (name === "email") {
       setEmail(value);
     }
-    if (name === 'password') {
+    if (name === "password") {
       setPassword(value);
     }
-    if (name === 'nickname') {
+    if (name === "nickname") {
       setNickName(value);
     }
   };
@@ -126,16 +127,20 @@ function Login() {
 
             <InputContainer>
               <Input name="email" value={email} onChange={onChange} />
-              <Input type="password" name="password" value={password} onChange={onChange} />
+              <Input
+                type="password"
+                name="password"
+                value={password}
+                onChange={onChange}
+              />
             </InputContainer>
-
             <ButtonContainer>
               <Button
                 disabled={
-                  email === '' ||
+                  email === "" ||
                   email.length < 6 ||
                   email.length > 30 ||
-                  password === '' ||
+                  password === "" ||
                   password.length < 6 ||
                   password.length > 10
                 }
@@ -186,7 +191,9 @@ function Login() {
                 onChange={(e) => setPasswdCheck(e.target.value)}
                 required
               />
-              {passwdCheck !== '' && password !== passwdCheck && <P>비밀번호가 일치하지 않습니다.</P>}
+              {passwdCheck !== "" && password !== passwdCheck && (
+                <P>비밀번호가 일치하지 않습니다.</P>
+              )}
               <Input
                 type="text"
                 value={nickName}
@@ -202,16 +209,16 @@ function Login() {
             <ButtonContainer>
               <Button
                 disabled={
-                  email === '' ||
+                  email === "" ||
                   email.length < 6 ||
                   email.length > 30 ||
-                  password === '' ||
+                  password === "" ||
                   password.length < 6 ||
                   password.length > 10 ||
-                  passwdCheck === '' ||
+                  passwdCheck === "" ||
                   passwdCheck.length < 6 ||
                   passwdCheck.length > 10 ||
-                  nickName === '' ||
+                  nickName === "" ||
                   nickName.length < 2 ||
                   nickName.length > 10 ||
                   password !== passwdCheck
@@ -280,8 +287,8 @@ const ButtonContainer = styled.div`
 `;
 
 const Button = styled.button`
-  background-color: ${(props) => (props.disabled ? 'lightgray' : '#FF6000')};
-  cursor: ${(props) => (props.disabled ? 'default' : 'pointer')};
+  background-color: ${(props) => (props.disabled ? "lightgray" : "#FF6000")};
+  cursor: ${(props) => (props.disabled ? "default" : "pointer")};
   color: #ffffff;
   border: none;
   margin-top: 4px;
@@ -290,7 +297,7 @@ const Button = styled.button`
   font-size: 18px;
 
   &:hover {
-    background-color: ${(props) => (props.disabled ? 'lightgray' : '#6b6b6b')};
+    background-color: ${(props) => (props.disabled ? "lightgray" : "#6b6b6b")};
   }
 `;
 
@@ -311,8 +318,8 @@ const SubButton = styled.div`
 `;
 
 const GoogleButton = styled.button`
-  background-color: ${(props) => (props.disabled ? 'lightgray' : '#FFA559')};
-  cursor: ${(props) => (props.disabled ? 'default' : 'pointer')};
+  background-color: ${(props) => (props.disabled ? "lightgray" : "#FFA559")};
+  cursor: ${(props) => (props.disabled ? "default" : "pointer")};
   color: #ffffff;
   border: none;
   margin-top: 4px;
@@ -321,7 +328,7 @@ const GoogleButton = styled.button`
   font-size: 18px;
 
   &:hover {
-    background-color: ${(props) => (props.disabled ? 'lightgray' : '#6b6b6b')};
+    background-color: ${(props) => (props.disabled ? "lightgray" : "#6b6b6b")};
   }
 `;
 
@@ -329,4 +336,5 @@ const P = styled.p`
   font-size: 15px;
   color: #ffa559;
 `;
+
 export default Login;

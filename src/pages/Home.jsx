@@ -1,8 +1,11 @@
 import React from "react";
-import Login from "../components/Login/Login";
+import FakeList from "../components/Home/GameList";
 
 export default function Home() {
   return (
-    <Login />
-  )
+    <div>
+      Home
+      <FakeList />
+    </div>
+  );
 }

@@ -2,14 +2,14 @@ import "./App.css";
 import GlobalStyle from "./GlobalStyle";
 import Router from "./shared/Router";
 
+const App = () => {
 
-function App() {
   return (
     <>
       <Router />
       <GlobalStyle />
     </>
   );
-}
+};
 
 export default App;
