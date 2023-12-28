@@ -16,7 +16,7 @@ export const gameList = [
     id: "1",
     title: "순발력게임",
     photo: photo1,
-    content: "누구보다 빠른 속도를 보여줍시다!",
+    content: "누구보다 빠른 속도를 보여주세요!",
   },
   {
     id: "2",

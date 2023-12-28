@@ -12,8 +12,8 @@ export const List = styled.div`
   background-color: var(--yellow);
 
   &:hover {
-    border: 5px solid var(--purple);
     transform: scale(1.05);
+    box-shadow: 2px 2px 2px 2px grey;
   }
 `;
 
@@ -66,7 +66,7 @@ export const AllSlide = styled.div`
     height: 0;
     font-size: 70px;
     color: white;
-    opacity: 0.3;
+    opacity: 0.6;
   }
 
   .slick-prev {
