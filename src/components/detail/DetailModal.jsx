@@ -1,10 +1,8 @@
 import React, { useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import styled from "styled-components";
-import { doc, setDoc } from "@firebase/firestore";
-import { db } from "../../shared/firebase";
-import { useDispatch } from "react-redux";
-import { toggle } from "../../redux/modules/postSlice";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { editPost } from "./queryFn";
 
 export default function DetailModal({ setIsEditing, selectedId }) {
   const [post, setPost] = useState({ star: "", text: "" });
@@ -16,16 +14,23 @@ export default function DetailModal({ setIsEditing, selectedId }) {
   // console.log(selectedId, "셀렉티드 아이디");
   const { id } = useParams();
   // if (!modaltoggle) return null;
-  const navigate = useNavigate();
-  const dispatch = useDispatch();
+  const queryClient = useQueryClient();
+  const { mutate: mutateToEdit } = useMutation({
+    mutationFn: editPost,
+    onSuccess: async () => {
+      await queryClient.invalidateQueries({ queryKey: ["posts"] });
+    },
+  });
   const editDone = async () => {
-    await setDoc(doc(db, "posts", `${selectedId}`), {
-      star: post.star,
-      content: post.text,
-    });
+    mutateToEdit({ post, id });
+
+    // await setDoc(doc(db, "posts", `${selectedId}`), {
+    //   star: post.star,
+    //   content: post.text,
+    // });
     setIsEditing(false);
     // navigate(`/detail/${id}`);
-    dispatch(toggle());
+    // dispatch(toggle());
     // console.log(id, "일단아이디");
   };
 

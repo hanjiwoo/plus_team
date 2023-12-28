@@ -1,13 +1,5 @@
 import React from "react";
-import {
-  SearchContainer,
-  SearchImage,
-  SearchInput,
-  StBtnInputWrapper,
-  StHeader,
-  StLogo,
-  Stbutton,
-} from "./styles";
+import { StBtnInputWrapper, StHeader, StLogo, Stbutton } from "./styles";
 import logo from "../../assets/images/logo.png";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
@@ -59,10 +51,6 @@ export default function Header() {
               </>
             )}
           </Stbutton>
-          <SearchContainer>
-            <SearchInput type="text" placeholder="검색어 입력" />
-            <SearchImage src="https://s3.ap-northeast-2.amazonaws.com/cdn.wecode.co.kr/icon/search.png" />
-          </SearchContainer>
         </StBtnInputWrapper>
       </StHeader>
     </>
