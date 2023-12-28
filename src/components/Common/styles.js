@@ -32,8 +32,8 @@ export const StBtnInputWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-right: 20px;
-  gap: 50px;
+  margin-right: 40px;
+  gap: 30px;
 `;
 
 export const Stbutton = styled.button`
@@ -41,45 +41,24 @@ export const Stbutton = styled.button`
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  gap: 50px;
+  gap: 20px;
   background: transparent;
   border: none;
   cursor: pointer;
 
   button {
     cursor: pointer;
-    height: 30px;
-    font-size: 14px;
-    background-color: var(--yellow);
-    color: black;
-    border-radius: 8px;
+    width: 120px;
+    height: 40px;
+    font-size: 18px;
+    background-color: #ffc436;
+    color: white;
+    border: none;
+    border-radius: 10px;
 
     &:hover {
       border: solid var(--green);
       transform: scale(1.05);
     }
   }
-`;
-
-export const SearchContainer = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  background-color: white;
-  border-radius: 70px;
-  padding: 10px;
-`;
-
-export const SearchInput = styled.input`
-  display: flex;
-  flex-direction: row;
-  width: 220px;
-  border: none;
-  outline: none;
-`;
-
-export const SearchImage = styled.img`
-  width: 20px;
-  height: 20px;
 `;
