@@ -6,6 +6,8 @@ import DetailPage from "../pages/DetailPage";
 import MemoryCardPage from "../pages/MemoryCardPage";
 import GlobalFonts from "../assets/fonts/GlobalFonts";
 import SpeedGamePage from "../pages/SpeedGamePage";
+import Signin from "../pages/Signin";
+import Register from "../pages/Register";
 
 export default function Router() {
   return (
@@ -18,6 +20,8 @@ export default function Router() {
             <Route path="/memorycard" element={<MemoryCardPage />} />
             <Route path="/speedgame" element={<SpeedGamePage />} />
             <Route path="/detail/:id" element={<DetailPage />} />
+            <Route path="/signin" element={<Signin />} />
+            <Route path="/register" element={<Register />} />
             <Route path="*" element={<Navigate replace to="/" />} />
           </Route>
         </Routes>
