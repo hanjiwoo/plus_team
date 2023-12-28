@@ -66,7 +66,7 @@ export const AllSlide = styled.div`
     height: 0;
     font-size: 70px;
     color: white;
-    opacity: 0.3;
+    opacity: 0.6;
   }
 
   .slick-prev {
