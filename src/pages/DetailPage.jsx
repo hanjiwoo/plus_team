@@ -16,6 +16,8 @@ export default function DetailPage() {
   const moveToGame = () => {
     let addr = "";
     switch (id) {
+      case "1":
+        addr = "/speedgame";
       case "4":
         addr = "/memorycard";
         break;
