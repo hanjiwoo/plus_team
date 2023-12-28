@@ -1,60 +1,73 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
-import {
-  collection,
-  getDocs,
-  doc,
-  addDoc,
-  deleteDoc,
-} from "@firebase/firestore";
-import { db } from "../../shared/firebase";
+
 import DetailModal from "./DetailModal";
 import SelectStar from "./SelectStar";
 import { useSelector } from "react-redux";
+import { addPost, deletePost, getPosts } from "./queryFn";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 
 export default function PostList({ id }) {
-  const [list, setList] = useState([]);
   const [post, setPost] = useState({ star: "", text: "" });
   const [isEditing, setIsEditing] = useState(false);
   const [selectedId, setSelectedId] = useState("");
   const zzz = useSelector((state) => state.post);
-  console.log(zzz);
+  // console.log(zzz);
   const onChangeHandler = (e) => {
     setPost({ ...post, [e.target.name]: e.target.value });
     // console.log(e.target.name);
     // console.log(post);
   };
-  const getData = async () => {
-    let dataArr = [];
-    const response = await getDocs(collection(db, "posts"));
-    response.forEach((doc) => {
-      const data = doc.data();
-      dataArr.push({ ...data, id: doc.id });
-      setList(dataArr);
-    });
-  };
+  const { data: posts, isLoading } = useQuery({
+    queryKey: ["posts"],
+    queryFn: getPosts,
+  });
+  // console.log(posts, " 데이터야2");
+  const queryClient = useQueryClient();
+  const { mutate: mutateToAdd } = useMutation({
+    mutationFn: addPost,
+    onSuccess: async () => {
+      await queryClient.invalidateQueries({ queryKey: ["posts"] });
+    },
+  });
+  const { mutate: mutateToDelete } = useMutation({
+    mutationFn: deletePost,
+    onSuccess: async () => {
+      await queryClient.invalidateQueries({ queryKey: ["posts"] });
+    },
+  });
+  // const getData = async () => {
+  //   let dataArr = [];
+  //   const response = await getDocs(collection(db, "posts"));
+  //   response.forEach((doc) => {
+  //     const data = doc.data();
+  //     dataArr.push({ ...data, id: doc.id });
+  //     setList(dataArr);
+  //   });
+  // };
   const postHandler = async () => {
     if (!post.star || !post.text) return alert("별점과 내용을 선택해주세요");
 
-    await addDoc(collection(db, "posts"), {
-      star: post.star,
-      uid: "",
-      content: post.text,
-      id: "",
-    });
+    mutateToAdd({ post, id });
+    // await addDoc(collection(db, "posts"), {
+    //   star: post.star,
+    //   uid: "",
+    //   content: post.text,
+    //   id: "",
+    // });
 
-    await getData();
+    // await getData();
     setPost({ star: "", text: "" });
   };
 
-  useEffect(() => {
-    getData();
-  }, []);
+  // useEffect(() => {
+  //   getData();
+  // }, []);
 
   const deleteHandler = async (id) => {
-    await deleteDoc(doc(db, "posts", `${id}`));
-
-    await getData();
+    // await deleteDoc(doc(db, "posts", `${id}`));
+    mutateToDelete(id);
+    // await getData();
   };
 
   const editHandler = async (id) => {
@@ -67,6 +80,13 @@ export default function PostList({ id }) {
     // console.log(id, "일단아이디");
     setSelectedId(id);
   };
+
+  const filteredposts = posts?.filter((post) => {
+    return post.gameId === id;
+  });
+  if (isLoading) {
+    return <>로딩중....</>;
+  }
   return (
     <>
       {isEditing && (
@@ -74,7 +94,7 @@ export default function PostList({ id }) {
       )}
 
       <PostWrapper>
-        {list.map((post) => {
+        {filteredposts.map((post) => {
           return (
             <List key={post.id}>
               <p>{post.star}</p>

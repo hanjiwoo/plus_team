@@ -1,11 +1,11 @@
-import React, { useState } from "react";
+import React from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 import { gameList } from "../components/Home/GameList";
-import PostList from "../components/memocard/PostList";
+import PostList from "../components/detail/PostList";
+import LikeBtn from "../components/detail/LikeBtn";
 
 export default function DetailPage() {
-  const [like, setLIke] = useState(false);
   const { id } = useParams();
 
   const [myGame] = gameList.filter((game) => {
@@ -18,6 +18,7 @@ export default function DetailPage() {
     switch (id) {
       case "1":
         addr = "/speedgame";
+        break;
       case "4":
         addr = "/memorycard";
         break;
@@ -27,18 +28,13 @@ export default function DetailPage() {
     navigate(addr);
   };
 
-  const likeBTN = () => {
-    setLIke(!like);
-  };
   return (
     <Content>
       <Photo>
         <img src={myGame.photo} alt="게임포토" />
       </Photo>
       <button onClick={moveToGame}>게임하러가기</button>
-      <LikeButton $like={like.toString()} onClick={likeBTN}>
-        좋아요 버튼
-      </LikeButton>
+      <LikeBtn id={id} />
       <PostList id={id} />
     </Content>
   );
@@ -64,24 +60,4 @@ const Photo = styled.figure`
     width: 100%;
     height: 100%;
   }
-`;
-
-const LikeButton = styled.button`
-  /* width: 50px;
-  height: 50px; */
-  color: white;
-  border-radius: 50%;
-
-  ${(props) => {
-    switch (props.$like) {
-      case "true":
-        return css`
-          background-color: black;
-        `;
-      default:
-        return css`
-          background-color: red;
-        `;
-    }
-  }}
 `;
