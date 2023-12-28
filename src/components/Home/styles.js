@@ -12,7 +12,6 @@ export const List = styled.div`
   background-color: var(--yellow);
 
   &:hover {
-    border: 5px solid var(--purple);
     transform: scale(1.05);
   }
 `;
