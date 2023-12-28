@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const StMain = styled.main`
-  min-height: ${(props) => props.theme.mainHeight};
+  min-height: 100dvh;
 `;
 
 // header.jsx
@@ -9,7 +9,7 @@ export const StHeader = styled.header`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background-color: var(--orange);
+  background-color: var(--red);
   color: black;
 `;
 
@@ -55,7 +55,7 @@ export const Stbutton = styled.button`
     border-radius: 8px;
 
     &:hover {
-      border: solid var(--purple);
+      border: solid var(--green);
       transform: scale(1.05);
     }
   }
