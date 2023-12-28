@@ -22,7 +22,7 @@ export default function GameList() {
             <List>
               <Photo>
                 {" "}
-                <img src={game.photo} />
+                <img src={game.photo} alt="게임포토" />
               </Photo>
 
               <span>타이틀 : {game.title}</span>

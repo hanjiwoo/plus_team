@@ -31,13 +31,13 @@ export default function DetailPage() {
   return (
     <Content>
       <Photo>
-        <img src={myGame.photo} />
+        <img src={myGame.photo} alt="게임포토" />
       </Photo>
       <button onClick={moveToGame}>게임하러가기</button>
       <LikeButton $like={like.toString()} onClick={likeBTN}>
         좋아요 버튼
       </LikeButton>
-      <PostList />
+      <PostList id={id} />
     </Content>
   );
 }
