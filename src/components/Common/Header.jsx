@@ -2,25 +2,24 @@ import React from "react";
 import { StBtnInputWrapper, StHeader, StLogo, Stbutton } from "./styles";
 import logo from "../../assets/images/logo.png";
 import { Link } from "react-router-dom";
-import { useDispatch, useSelector } from 'react-redux';
-import { logout } from '../../redux/modules/authSlice';
+import { useDispatch, useSelector } from "react-redux";
+import { logout } from "../../redux/modules/authSlice";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 
-
 export default function Header() {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const navigateLogin = () => {
-    navigate("/Signin")
-  }
+    navigate("/Signin");
+  };
 
   const navigateregister = () => {
-    navigate("/Register")
-  }
+    navigate("/Register");
+  };
   const dispatch = useDispatch();
   const isLogin = useSelector((state) => state.authSlice.isLogin);
-  console.log(isLogin)
+  console.log(isLogin);
 
   return (
     <>
@@ -32,23 +31,28 @@ export default function Header() {
           <Stbutton>
             {isLogin ? (
               <>
-                <Link to="/profile">
+                <Link to="/mypage">
                   <button>마이페이지</button>
                 </Link>
-                  <button
-                    size="large"
-                    onClick={() => {
-                      Swal.fire('로그아웃', '다음에도 방문해주세요!', 'warning')
-                      dispatch(logout());
-                      navigate('/');
-                    }}>
-                    로그아웃
-                  </button>
+                <button
+                  size="large"
+                  onClick={() => {
+                    Swal.fire("로그아웃", "다음에도 방문해주세요!", "warning");
+                    dispatch(logout());
+                    navigate("/");
+                  }}
+                >
+                  로그아웃
+                </button>
               </>
-            ):(
+            ) : (
               <>
-                  <button size="large" onClick={navigateregister}>회원가입</button>
-                  <button size="large" onClick={navigateLogin}>로그인</button>
+                <button size="large" onClick={navigateregister}>
+                  회원가입
+                </button>
+                <button size="large" onClick={navigateLogin}>
+                  로그인
+                </button>
               </>
             )}
           </Stbutton>
