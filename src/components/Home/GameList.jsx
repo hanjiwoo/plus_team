@@ -26,6 +26,12 @@ export const gameList = [
     content: "당신의 창의력을 발휘해보세요!",
   },
   {
+    id: "3",
+    title: "틱택토",
+    photo: "",
+    content: "아잉!",
+  },
+  {
     id: "4",
     title: "메모리게임",
     photo: photo4,
