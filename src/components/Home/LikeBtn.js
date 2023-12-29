@@ -1,13 +1,20 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import styled from "styled-components";
 import HeartEmpty from "../../assets/images/HeartEmpty.png";
 import HeartFull from "../../assets/images/HeartFull.png";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { addHeart, deleteHeart, getHeart } from "./queryFn";
-import { nanoid } from "nanoid";
-export default function LikeBtn({ id }) {
-  // console.log(id, "이거아이디다");
-  const [like, setLIke] = useState(false);
+import { addHeart, deleteHeart, getHeart } from "./queryFns";
+import { useSelector } from "react-redux";
+export default function LikeBtn({ name, id }) {
+  const { isLogin, uid /* email, displayName,  photoURL */ } = useSelector(
+    (state) => state.authSlice
+  );
+
+  // useEffect(() => {
+  //   console.log(user, "이거 유저다");
+  // }, []);
+
+  // const [like, setLIke] = useState(false);
   const { data: hearts, isLoading } = useQuery({
     queryKey: ["hearts"],
     queryFn: getHeart,
@@ -34,19 +41,20 @@ export default function LikeBtn({ id }) {
   const filteredHearts = hearts?.filter((heart) => {
     return heart.gameId === id;
   });
-  let userId_fake = "1";
+
   const filterdHeart1 = hearts?.find((heart) => {
-    return heart.gameId === id && heart.uid === userId_fake;
+    return heart.gameId === id && heart.uid === uid;
   });
-  console.log(filterdHeart1, "이거 하트들");
+  // console.log(filterdHeart1, "이거 하트들");
   const selectedId = filterdHeart1?.id;
   const likeBTN = () => {
+    if (!isLogin) return alert("로그인부터하세요");
     // setLIke(!like);
 
     if (filterdHeart1) {
       mutateToDelete(selectedId);
     } else {
-      mutateToAdd({ userId_fake, id });
+      mutateToAdd({ uid, id });
     }
   };
   if (isLoading) {
@@ -57,16 +65,16 @@ export default function LikeBtn({ id }) {
       {/* <LikeButton $like={like.toString()} onClick={likeBTN}>
         좋아요 버튼
       </LikeButton> */}
-      <Image_count>
-        <ImageWrapper onClick={likeBTN}>
+      <ImageCount>
+        <ImageWrapper name={name} onClick={likeBTN}>
           {filterdHeart1 ? (
-            <img src={HeartFull}></img>
+            <img name={name} src={HeartFull} alt="꽉찬하트"></img>
           ) : (
-            <img src={HeartEmpty}></img>
+            <img name={name} src={HeartEmpty} alt="빈하트"></img>
           )}
         </ImageWrapper>
         <p>좋아요개수 :{filteredHearts?.length}</p>{" "}
-      </Image_count>
+      </ImageCount>
       <div></div>
     </>
   );
@@ -87,15 +95,15 @@ export default function LikeBtn({ id }) {
 //     }
 //   }}
 // `;
-const Image_count = styled.div`
+const ImageCount = styled.div`
   display: flex;
   align-items: center;
   gap: 10px;
 `;
 
 const ImageWrapper = styled.div`
-  width: 100px;
-  height: 100px;
+  width: 50px;
+  height: 50px;
   display: flex;
   justify-content: center;
   align-items: center;

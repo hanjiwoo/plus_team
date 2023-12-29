@@ -11,7 +11,9 @@ export default function PostList({ id }) {
   const [post, setPost] = useState({ star: "", text: "" });
   const [isEditing, setIsEditing] = useState(false);
   const [selectedId, setSelectedId] = useState("");
-  const zzz = useSelector((state) => state.post);
+  const { uid, isLogin /* email,  displayName,  photoURL */ } = useSelector(
+    (state) => state.authSlice
+  );
   // console.log(zzz);
   const onChangeHandler = (e) => {
     setPost({ ...post, [e.target.name]: e.target.value });
@@ -48,7 +50,7 @@ export default function PostList({ id }) {
   const postHandler = async () => {
     if (!post.star || !post.text) return alert("별점과 내용을 선택해주세요");
 
-    mutateToAdd({ post, id });
+    mutateToAdd({ post, id, uid });
     // await addDoc(collection(db, "posts"), {
     //   star: post.star,
     //   uid: "",
@@ -84,6 +86,8 @@ export default function PostList({ id }) {
   const filteredposts = posts?.filter((post) => {
     return post.gameId === id;
   });
+  // const sortedposts = filteredposts.sort((a, b) => b.createdAt - a.createdAt);
+
   if (isLoading) {
     return <>로딩중....</>;
   }
@@ -100,22 +104,36 @@ export default function PostList({ id }) {
               <p>{post.star}</p>
               <p> {post.content}</p>
               <div>
-                <button onClick={() => editHandler(post.id)}>수정하기</button>
-                <button onClick={() => deleteHandler(post.id)}>삭제하기</button>
+                {uid === post.uid && (
+                  <>
+                    <button onClick={() => editHandler(post.id)}>
+                      수정하기
+                    </button>
+                    <button onClick={() => deleteHandler(post.id)}>
+                      삭제하기
+                    </button>
+                  </>
+                )}
               </div>
             </List>
           );
         })}
       </PostWrapper>
-      <SelectStar onChangeHandler={onChangeHandler} />
+      <SelectStar disabled={!isLogin} onChangeHandler={onChangeHandler} />
       <TextArea
         name="text"
         value={post.text}
         onChange={onChangeHandler}
-        placeholder="게임을 평가해주세요 최대 30자"
+        placeholder={
+          isLogin
+            ? "게임을 평가해주세요 최대 30자"
+            : "로그인을 하셔야 게임평가를 하실수 있어요"
+        }
         maxLength={30}
       ></TextArea>
-      <button onClick={postHandler}>제출하기</button>
+      <button disabled={!isLogin} onClick={postHandler}>
+        제출하기
+      </button>
     </>
   );
 }

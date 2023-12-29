@@ -1,46 +1,59 @@
-import React, { useState } from 'react';
-import styled from 'styled-components';
-import { auth } from '../../shared/firebase';
-import { signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider} from 'firebase/auth'
+import React, { useState } from "react";
+import styled from "styled-components";
+import { auth } from "../../shared/firebase";
+import {
+  signInWithEmailAndPassword,
+  signInWithPopup,
+  GoogleAuthProvider,
+} from "firebase/auth";
 import { useDispatch } from "react-redux";
-import authSlice, { login } from '../../redux/modules/authSlice';
-import { useNavigate } from 'react-router-dom';
-import Swal from 'sweetalert2';
+import authSlice, { login } from "../../redux/modules/authSlice";
+import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 
 export default function Login() {
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
-    const dispatch = useDispatch();
-    const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
-    const localLogin = async (e) => {
-        e.preventDefault();
-        try {
-          const userCredential = await signInWithEmailAndPassword(
-            auth,
-            email,
-            password,
-          );
-          setEmail("");
-          setPassword("");
-          dispatch(login({
-            email: userCredential.user.email,
-            displayName: userCredential.user.displayName,
-            uid: userCredential.user.uid,
-            photoURL : userCredential.user.photoURL
-          }));
-          Swal.fire('로그인 성공', userCredential.user.displayName+ '님 RE-PLAY의 오신걸 환영합니다.', 'success')
-          navigate('/');
+  const localLogin = async (e) => {
+    e.preventDefault();
+    try {
+      const userCredential = await signInWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+      setEmail("");
+      setPassword("");
+      dispatch(
+        login({
+          email: userCredential.user.email,
+          displayName: userCredential.user.displayName,
+          uid: userCredential.user.uid,
+          photoURL: userCredential.user.photoURL,
+        })
+      );
+      Swal.fire(
+        "로그인 성공",
+        userCredential.user.displayName + "님 RE-PLAY의 오신걸 환영합니다.",
+        "success"
+      );
+      navigate("/");
 
-          // console.log(userCredential);
-        } catch (error) {
-          const errorCode = error.code;
-          const errorMessage = error.message;
-          console.log("error with LogIn", errorCode, errorMessage);
-          Swal.fire('로그인 실패', '등록되지 않은 회원이거나 유효하지 않은 이메일입니다.', 'error');
-        }
-      };
+    } catch (error) {
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      console.log("error with LogIn", errorCode, errorMessage);
+      Swal.fire(
+        "로그인 실패",
+        "등록되지 않은 회원이거나 유효하지 않은 이메일입니다",
+        "error"
+      );
+    }
+  };
 
       const GoogleLogin = async (e) => {
         e.preventDefault();
@@ -67,56 +80,58 @@ export default function Login() {
         }
       };
 
-      const onChange = (e) => {
-        const {
-          target: { name, value },
-        } = e;
-        if (name === "email") {
-          setEmail(value);
-        }
-        if (name === "password") {
-          setPassword(value);
-        }
-      };
+  const onChange = (e) => {
+    const {
+      target: { name, value },
+    } = e;
+    if (name === "email") {
+      setEmail(value);
+    }
+    if (name === "password") {
+      setPassword(value);
+    }
+  };
 
   return (
     <Container>
-        <Form onSubmit={localLogin}>
-            <Title>로그인</Title>
-            <InputContainer>
-                <Input 
-                type="email"
-                name="email"
-                placeholder="이메일 (6~30글자)"
-                value={email} onChange={onChange} />
-                <Input
-                type="password"
-                name="password"
-                placeholder='비밀번호 (6~10글자)'
-                value={password}
-                onChange={onChange}
-              />
-            </InputContainer>
-            <ButtonContainer>
-              <Button
-                disabled={
-                  email === "" ||
-                  email.length < 6 ||
-                  email.length > 30 ||
-                  password === "" ||
-                  password.length < 6 ||
-                  password.length > 10
-                }
-              >
-                로그인
-              </Button>
-              <GoogleButton type="button" onClick={GoogleLogin}>
-                Google 로그인
-              </GoogleButton>
-            </ButtonContainer>
-        </Form>
+      <Form onSubmit={localLogin}>
+        <Title>로그인</Title>
+        <InputContainer>
+          <Input
+            type="email"
+            name="email"
+            placeholder="이메일 (6~30글자)"
+            value={email}
+            onChange={onChange}
+          />
+          <Input
+            type="password"
+            name="password"
+            placeholder="비밀번호 (6~10글자)"
+            value={password}
+            onChange={onChange}
+          />
+        </InputContainer>
+        <ButtonContainer>
+          <Button
+            disabled={
+              email === "" ||
+              email.length < 6 ||
+              email.length > 30 ||
+              password === "" ||
+              password.length < 6 ||
+              password.length > 10
+            }
+          >
+            로그인
+          </Button>
+          <GoogleButton type="button" onClick={GoogleLogin}>
+            Google 로그인
+          </GoogleButton>
+        </ButtonContainer>
+      </Form>
     </Container>
-)
+  );
 }
 
 const Container = styled.div`
