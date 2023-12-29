@@ -73,7 +73,7 @@ export default function LikeBtn({ name, id }) {
             <img name={name} src={HeartEmpty} alt="빈하트"></img>
           )}
         </ImageWrapper>
-        <p>좋아요개수 :{filteredHearts?.length}</p>{" "}
+        <StP> {filteredHearts?.length}</StP>{" "}
       </ImageCount>
       <div></div>
     </>
@@ -98,12 +98,14 @@ export default function LikeBtn({ name, id }) {
 const ImageCount = styled.div`
   display: flex;
   align-items: center;
+  justify-content: flex-end;
+  width: 60%;
   gap: 10px;
 `;
 
 const ImageWrapper = styled.div`
-  width: 50px;
-  height: 50px;
+  width: 30px;
+  height: 30px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -114,4 +116,10 @@ const ImageWrapper = styled.div`
     width: 100%;
     height: 100%;
   }
+`;
+
+const StP = styled.p`
+  color: var(--red);
+  font-size: 20px;
+  text-align: center;
 `;
