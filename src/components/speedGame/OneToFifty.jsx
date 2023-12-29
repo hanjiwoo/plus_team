@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import styled from "styled-components";
 import Board from "./Board";
 import Timer from "./Timer";
+import Swal from "sweetalert2";
 
 let array = [];
 for (let i = 1; i <= 25; i++) {
@@ -12,13 +13,31 @@ function OneToFifty() {
   const [numbers, setNumbers] = useState(array);
   const [gameFlag, setGameFlag] = useState(false);
   const [current, setCurrent] = useState(1);
+  const record = useRef();
 
   const handleClick = (num) => {
     if (num === current && gameFlag) {
+      // 성공 시, alert
       if (num === 50) {
-        // 게임 성공 시, alert
-        console.log("Success");
-        //console.log(record.current / 1000);
+        let timerInterval;
+        Swal.fire({
+          title: "축하 드립니다 !!!",
+          html: `완료 기록 : ${record.current / 1000}초`,
+          timer: 2000,
+          timerProgressBar: true,
+          didOpen: () => {
+            Swal.showLoading();
+          },
+          willClose: () => {
+            clearInterval(timerInterval);
+          },
+        }).then((result) => {
+          if (result.dismiss === Swal.DismissReason.timer) {
+            console.log("I was closed by the timer");
+          }
+        });
+
+        // console.log(record.current / 1000);
         endGame();
       }
       const index = numbers.indexOf(num);
@@ -52,7 +71,11 @@ function OneToFifty() {
   return (
     <Container>
       <StDiv>
-        {gameFlag ? <Timer /> : <StBtn onClick={startGame}>Start</StBtn>}
+        {gameFlag ? (
+          <Timer record={record} />
+        ) : (
+          <StBtn onClick={startGame}>Start</StBtn>
+        )}
       </StDiv>
       <Board numbers={numbers} handleClick={handleClick}></Board>
     </Container>
