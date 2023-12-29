@@ -20,22 +20,21 @@ export const List = styled.div`
 export const Photo = styled.figure`
   width: 400px;
   height: 350px;
-  margin: 40px;
   border-radius: 20px;
-  overflow: hidden;
   & img {
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
-    /* width: 100%;
-    height: 100%; */
+    width: 100%;
+    height: 100%;
+    border-radius: 20px;
   }
 `;
 
 export const StTitle = styled.div`
-  margin: 10px;
+  margin: 25px 0px 0px 0px;
   font-size: 40px;
-  color: var(--green);
+  color: white;
   text-shadow: -1px 0px black, 0px 1px black, 1px 0px black, 0px -1px black;
 `;
 
@@ -46,8 +45,8 @@ export const StText = styled.div`
   flex-direction: column;
   margin: 25px;
   font-size: 25px;
-  color: #fad652;
-  text-shadow: -1px 0px black, 0px 1px black, 1px 0px black, 0px -1px black;
+  color: var(--yellow);
+  text-shadow: -1px 0px white, 0px 1px white, 1px 0px white, 0px -1px white;
 `;
 
 export const AllSlide = styled.div`
@@ -98,7 +97,7 @@ export const AllSlide = styled.div`
     width: 15px;
     height: 15px;
     border-radius: 50%;
-    background-color: var(--red);
+    background-color: var(--yellow);
     text-align: center;
     content: "";
   }

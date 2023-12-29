@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../redux/modules/authSlice";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
+import logo1 from "../../assets/images/logo 1.png";
 
 export default function Header() {
   const navigate = useNavigate();
@@ -37,7 +38,14 @@ export default function Header() {
                 <button
                   size="large"
                   onClick={() => {
-                    Swal.fire("로그아웃", "다음에도 방문해주세요!", "warning");
+                    Swal.fire({
+                      title: "로그아웃",
+                      text: "다음에도 저희 RE-PLAY를 이용해주세요 !",
+                      imageUrl: logo1,
+                      imageWidth: 200,
+                      imageHeight: 200,
+                      imageAlt: "Custom image",
+                    });
                     dispatch(logout());
                     navigate("/");
                   }}

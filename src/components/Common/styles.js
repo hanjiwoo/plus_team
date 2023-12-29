@@ -57,7 +57,6 @@ export const Stbutton = styled.button`
     border-radius: 10px;
 
     &:hover {
-      border: solid var(--green);
       transform: scale(1.05);
     }
   }

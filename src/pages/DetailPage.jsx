@@ -31,35 +31,56 @@ export default function DetailPage() {
   };
 
   return (
-    <Content>
-      <Photo>
-        <img src={myGame.photo} alt="게임포토" />
-      </Photo>
-      <button onClick={moveToGame}>게임하러가기</button>
-
-      <PostList id={id} />
-    </Content>
+    <StBox>
+      <Content>
+        <StH1>{myGame.title}</StH1>
+        <StP>{myGame.explain}</StP>
+        <StBtn onClick={moveToGame}>게임하러가기</StBtn>
+        <PostList id={id} />
+      </Content>
+    </StBox>
   );
 }
 
-const Content = styled.section`
+const StBox = styled.section`
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   height: 100vh;
+  background-color: aliceblue;
 `;
 
-const Photo = styled.figure`
+const Content = styled.div`
+  width: 900px;
+  height: 800px;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
-  width: 500px;
-  height: 500px;
-  border-radius: 50%;
-  overflow: hidden;
-  &img {
-    width: 100%;
-    height: 100%;
-  }
+  /* justify-content: center; */
+  /* border: 1px solid black; */
+  border-radius: 20px;
+`;
+
+const StH1 = styled.h1`
+  font-size: 50px;
+`;
+
+const StP = styled.p`
+  font-size: 20px;
+  width: 800px;
+  white-space: pre-line;
+  text-align: center;
+  line-height: 1.5em;
+  margin: 30px;
+`;
+
+const StBtn = styled.button`
+  width: 200px;
+  height: 50px;
+  border-radius: 10px;
+  border: none;
+  background-color: #ffa732;
+  font-size: 20px;
+  color: white;
 `;
