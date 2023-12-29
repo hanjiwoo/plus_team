@@ -31,6 +31,12 @@ export const gameList = [
     explain: "",
   },
   {
+    id: "3",
+    title: "틱택토",
+    photo: "",
+    content: "아잉!",
+  },
+  {
     id: "4",
     title: "메모리게임",
     photo: photo4,
