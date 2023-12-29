@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
 import { logout } from '../../redux/modules/authSlice';
 import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 
 
 export default function Header() {
@@ -37,7 +38,7 @@ export default function Header() {
                   <button
                     size="large"
                     onClick={() => {
-                      alert('정말 로그아웃 하시겠습니까?');
+                      Swal.fire('로그아웃', '다음에도 방문해주세요!', 'warning')
                       dispatch(logout());
                       navigate('/');
                     }}>

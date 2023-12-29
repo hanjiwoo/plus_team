@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { auth } from '../../shared/firebase';
 import { signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider} from 'firebase/auth'
 import { useDispatch } from "react-redux";
-import { login } from '../../redux/modules/authSlice';
+import authSlice, { login } from '../../redux/modules/authSlice';
 import { useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
 
@@ -25,11 +25,12 @@ export default function Login() {
           setEmail("");
           setPassword("");
           dispatch(login({
-            email: userCredential.email,
-            displayName: userCredential.displayName,
-            uid: userCredential.uid,
-            photoURL : userCredential.photoURL
+            email: userCredential.user.email,
+            displayName: userCredential.user.displayName,
+            uid: userCredential.user.uid,
+            photoURL : userCredential.user.photoURL
           }));
+          Swal.fire('로그인 성공', userCredential.user.displayName+ '님 RE-PLAY의 오신걸 환영합니다.', 'success')
           navigate('/');
 
           // console.log(userCredential);
@@ -49,14 +50,14 @@ export default function Login() {
           prompt: "select_account",
         });
         try {
-          const result = await signInWithPopup(auth, Provider);
-          console.log(result);
+          const result = await signInWithPopup(auth, Provider);    
           dispatch(login({
             email: result.email,
             displayName: result.displayName,
             uid: result.uid,
             photoURL : result.photoURL
           }));
+          Swal.fire('로그인 성공', 'RE-PLAY의 오신걸 환영합니다. ', 'success');
           navigate('/');
 
         } catch (error) {

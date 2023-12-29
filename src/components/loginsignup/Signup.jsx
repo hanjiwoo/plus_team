@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import { auth } from '../../shared/firebase';
 import { createUserWithEmailAndPassword,  updateProfile} from 'firebase/auth'
 import { useNavigate } from 'react-router-dom';
+import Swal from 'sweetalert2';
 
 export default function Signup() {
 
@@ -34,12 +35,13 @@ export default function Signup() {
           setPassword("");
           setPasswdCheck("");
           setNickName("");
+          Swal.fire('회원가입 완료', '로그인화면으로 이동합니다.', 'success');
           navigate('/Signin')
         } catch (error) {
           const errorCode = error.code;
           const errorMessage = error.errorMessage;
           console.log("error with signUp", errorCode, errorMessage);
-          alert("중복이거나 사용할 수 없는 이메일 입니다.");
+          Swal.fire('회원가입 실패', '중복이거나 사용할 수 없는 이메일 입니다.', 'error');
         }
       };
 
@@ -63,7 +65,7 @@ export default function Signup() {
     <Container>
     <Form onSubmit={signUp}>
           <>
-            <Title>Signup</Title>
+            <Title>회원가입</Title>
             <InputContainer>
               <Input
                 type="email"
@@ -102,7 +104,7 @@ export default function Signup() {
                 type="text"
                 value={nickName}
                 name="nickname"
-                placeholder="  닉네임 (2~10글자)"
+                placeholder="닉네임 (2~10글자)"
                 minLength={2}
                 maxLength={10}
                 onChange={onChange}
