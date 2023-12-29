@@ -9,6 +9,8 @@ import SpeedGamePage from "../pages/SpeedGamePage";
 import Signin from "../pages/Signin";
 import Register from "../pages/Register";
 
+import TicTacToe from "../pages/TicTacToe";
+
 export default function Router() {
   return (
     <>
@@ -23,6 +25,8 @@ export default function Router() {
             <Route path="/signin" element={<Signin />} />
             <Route path="/register" element={<Register />} />
             <Route path="*" element={<Navigate replace to="/" />} />
+
+            <Route path="/tictactoe" element={<TicTacToe />} />
           </Route>
         </Routes>
       </BrowserRouter>
