@@ -10,6 +10,7 @@ import { useDispatch } from "react-redux";
 import authSlice, { login } from "../../redux/modules/authSlice";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
+import heart from "../../assets/images/heart.png";
 
 export default function Login() {
   const [email, setEmail] = useState("");
@@ -36,13 +37,15 @@ export default function Login() {
           photoURL: userCredential.user.photoURL,
         })
       );
-      Swal.fire(
-        "로그인 성공",
-        userCredential.user.displayName + "님 RE-PLAY의 오신걸 환영합니다.",
-        "success"
-      );
+      Swal.fire({
+        title: "로그인 성공",
+        text: userCredential.user.displayName + ` 님 환영합니다 !`,
+        imageUrl: heart,
+        imageWidth: 200,
+        imageHeight: 200,
+        imageAlt: "Custom image",
+      });
       navigate("/");
-
     } catch (error) {
       const errorCode = error.code;
       const errorMessage = error.message;
@@ -55,30 +58,38 @@ export default function Login() {
     }
   };
 
-      const GoogleLogin = async (e) => {
-        e.preventDefault();
-    
-        const Provider = new GoogleAuthProvider();
-        Provider.setCustomParameters({
-          prompt: "select_account",
-        });
-        try {
-          const result = await signInWithPopup(auth, Provider);    
-          dispatch(login({
-            email: result.email,
-            displayName: result.displayName,
-            uid: result.uid,
-            photoURL : result.photoURL
-          }));
-          Swal.fire('로그인 성공', 'RE-PLAY의 오신걸 환영합니다. ', 'success');
-          navigate('/');
+  const GoogleLogin = async (e) => {
+    e.preventDefault();
 
-        } catch (error) {
-          const errorCode = error.code;
-          const errorMessage = error.message;
-          console.log("error with googleLogIn", errorCode, errorMessage);
-        }
-      };
+    const Provider = new GoogleAuthProvider();
+    Provider.setCustomParameters({
+      prompt: "select_account",
+    });
+    try {
+      const result = await signInWithPopup(auth, Provider);
+      dispatch(
+        login({
+          email: result.email,
+          displayName: result.displayName,
+          uid: result.uid,
+          photoURL: result.photoURL,
+        })
+      );
+      Swal.fire({
+        title: "로그인 성공",
+        text: "RE-PLAY에 오신 것을 환영합니다 !",
+        imageUrl: heart,
+        imageWidth: 200,
+        imageHeight: 200,
+        imageAlt: "Custom image",
+      });
+      navigate("/");
+    } catch (error) {
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      console.log("error with googleLogIn", errorCode, errorMessage);
+    }
+  };
 
   const onChange = (e) => {
     const {
@@ -138,6 +149,7 @@ const Container = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-top: 200px;
 `;
 
 const Form = styled.form`
@@ -184,7 +196,7 @@ const ButtonContainer = styled.div`
 `;
 
 const Button = styled.button`
-  background-color: ${(props) => (props.disabled ? "lightgray" : "#FF6000")};
+  background-color: ${(props) => (props.disabled ? "lightgray" : "#20b2aa")};
   cursor: ${(props) => (props.disabled ? "default" : "pointer")};
   color: #ffffff;
   border: none;
@@ -192,14 +204,11 @@ const Button = styled.button`
   margin-bottom: 2px;
   padding: 12px 0;
   font-size: 18px;
-
-  &:hover {
-    background-color: ${(props) => (props.disabled ? "lightgray" : "#6b6b6b")};
-  }
+  border-radius: 10px;
 `;
 
 const GoogleButton = styled.button`
-  background-color: ${(props) => (props.disabled ? "lightgray" : "#FFA559")};
+  background-color: ${(props) => (props.disabled ? "lightgray" : "#999")};
   cursor: ${(props) => (props.disabled ? "default" : "pointer")};
   color: #ffffff;
   border: none;
@@ -207,8 +216,5 @@ const GoogleButton = styled.button`
   margin-bottom: 2px;
   padding: 12px 0;
   font-size: 18px;
-
-  &:hover {
-    background-color: ${(props) => (props.disabled ? "lightgray" : "#6b6b6b")};
-  }
+  border-radius: 10px;
 `;

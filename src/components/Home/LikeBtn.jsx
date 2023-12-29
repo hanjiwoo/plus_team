@@ -5,6 +5,8 @@ import HeartFull from "../../assets/images/HeartFull.png";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { addHeart, deleteHeart, getHeart } from "./queryFns";
 import { useSelector } from "react-redux";
+import Swal from "sweetalert2";
+
 export default function LikeBtn({ name, id }) {
   const { isLogin, uid /* email, displayName,  photoURL */ } = useSelector(
     (state) => state.authSlice
@@ -48,7 +50,7 @@ export default function LikeBtn({ name, id }) {
   // console.log(filterdHeart1, "이거 하트들");
   const selectedId = filterdHeart1?.id;
   const likeBTN = () => {
-    if (!isLogin) return alert("로그인부터하세요");
+    if (!isLogin) return Swal.fire("로그인 후에 이용이 가능합니다.");
     // setLIke(!like);
 
     if (filterdHeart1) {
