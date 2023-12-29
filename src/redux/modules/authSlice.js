@@ -23,6 +23,7 @@ const authSlice = createSlice({
       state.displayName = displayName;
       state.uid = uid;
       state.photoURL = photoURL;
+      console.log(displayName)
     },
     logout: (state, action) => {
       localStorage.clear();

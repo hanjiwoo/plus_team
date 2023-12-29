@@ -7,7 +7,7 @@ import {
   GoogleAuthProvider,
 } from "firebase/auth";
 import { useDispatch } from "react-redux";
-import { login } from "../../redux/modules/authSlice";
+import authSlice, { login } from "../../redux/modules/authSlice";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 
@@ -16,7 +16,6 @@ export default function Login() {
   const [password, setPassword] = useState("");
 
   const dispatch = useDispatch();
-
   const navigate = useNavigate();
 
   const localLogin = async (e) => {
@@ -37,9 +36,13 @@ export default function Login() {
           photoURL: userCredential.user.photoURL,
         })
       );
+      Swal.fire(
+        "로그인 성공",
+        userCredential.user.displayName + "님 RE-PLAY의 오신걸 환영합니다.",
+        "success"
+      );
       navigate("/");
 
-      // console.log(userCredential);
     } catch (error) {
       const errorCode = error.code;
       const errorMessage = error.message;
@@ -52,31 +55,30 @@ export default function Login() {
     }
   };
 
-  const GoogleLogin = async (e) => {
-    e.preventDefault();
+      const GoogleLogin = async (e) => {
+        e.preventDefault();
+    
+        const Provider = new GoogleAuthProvider();
+        Provider.setCustomParameters({
+          prompt: "select_account",
+        });
+        try {
+          const result = await signInWithPopup(auth, Provider);    
+          dispatch(login({
+            email: result.email,
+            displayName: result.displayName,
+            uid: result.uid,
+            photoURL : result.photoURL
+          }));
+          Swal.fire('로그인 성공', 'RE-PLAY의 오신걸 환영합니다. ', 'success');
+          navigate('/');
 
-    const Provider = new GoogleAuthProvider();
-    Provider.setCustomParameters({
-      prompt: "select_account",
-    });
-    try {
-      const result = await signInWithPopup(auth, Provider);
-      console.log(result);
-      dispatch(
-        login({
-          email: result.user.email,
-          displayName: result.user.displayName,
-          uid: result.user.uid,
-          photoURL: result.user.photoURL,
-        })
-      );
-      navigate("/");
-    } catch (error) {
-      const errorCode = error.code;
-      const errorMessage = error.message;
-      console.log("error with googleLogIn", errorCode, errorMessage);
-    }
-  };
+        } catch (error) {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          console.log("error with googleLogIn", errorCode, errorMessage);
+        }
+      };
 
   const onChange = (e) => {
     const {
