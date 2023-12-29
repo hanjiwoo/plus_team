@@ -3,7 +3,6 @@ import { useNavigate, useParams } from "react-router-dom";
 import styled from "styled-components";
 import { gameList } from "../components/Home/GameList";
 import PostList from "../components/detail/PostList";
-import LikeBtn from "../components/detail/LikeBtn";
 
 export default function DetailPage() {
   const { id } = useParams();
@@ -34,7 +33,7 @@ export default function DetailPage() {
         <img src={myGame.photo} alt="게임포토" />
       </Photo>
       <button onClick={moveToGame}>게임하러가기</button>
-      <LikeBtn id={id} />
+
       <PostList id={id} />
     </Content>
   );
