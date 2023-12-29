@@ -37,7 +37,7 @@ export default function Login() {
           const errorCode = error.code;
           const errorMessage = error.message;
           console.log("error with LogIn", errorCode, errorMessage);
-          Swal.fire('로그인 실패', '등록되지 않은 회원이거나 유효하지 않은 이메일입니다', 'error');
+          Swal.fire('로그인 실패', '등록되지 않은 회원이거나 유효하지 않은 이메일입니다.', 'error');
         }
       };
 
