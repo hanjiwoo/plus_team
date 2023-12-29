@@ -64,10 +64,10 @@ export default function Login() {
       console.log(result);
       dispatch(
         login({
-          email: result.email,
-          displayName: result.displayName,
-          uid: result.uid,
-          photoURL: result.photoURL,
+          email: result.user.email,
+          displayName: result.user.displayName,
+          uid: result.user.uid,
+          photoURL: result.user.photoURL,
         })
       );
       navigate("/");
