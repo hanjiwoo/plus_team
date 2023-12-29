@@ -1,9 +1,10 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { List, StTitle, Photo, StText, AllSlide } from "./styles";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import LikeBtn from "./LikeBtn";
 
 const photo1 =
   "https://img.gamen.com/@files/gamefile/2021/20210525/read_img_1621919018.png";
@@ -33,26 +34,32 @@ export const gameList = [
 ];
 
 export default function GameList() {
+  const navigate = useNavigate();
+  const pageMover = (event, addr) => {
+    if (event.target.name === "like") return;
+    navigate(addr);
+  };
+
   return (
     <AllSlide>
       <Slider {...settings}>
         {gameList.map((game) => {
           return (
-            <>
-              <Link
-                to={`/detail/${game.id}`}
-                key={game.id}
-                style={{ textDecoration: "none" }}
-              >
-                <List>
-                  <StTitle>{game.title}</StTitle>
-                  <Photo>
-                    <img src={game.photo} alt={game.title} />
-                  </Photo>
-                  <StText>{game.content}</StText>
-                </List>
-              </Link>
-            </>
+            <div
+              onClick={(event) => pageMover(event, `/detail/${game.id}`)}
+              /*  to={`/detail/${game.id}`} */
+              key={game.id}
+              style={{ textDecoration: "none" }}
+            >
+              <List>
+                <StTitle>{game.title}</StTitle>
+                <Photo>
+                  <img src={game.photo} alt={game.title} />
+                </Photo>
+                <StText>{game.content}</StText>
+                <LikeBtn name="like" id={game.id} />
+              </List>
+            </div>
           );
         })}
       </Slider>

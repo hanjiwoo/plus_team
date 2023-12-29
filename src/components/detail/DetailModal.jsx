@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useParams } from "react-router-dom";
+// import { useParams } from "react-router-dom";
 import styled from "styled-components";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { editPost } from "./queryFn";
@@ -12,7 +12,7 @@ export default function DetailModal({ setIsEditing, selectedId }) {
     // console.log(post);
   };
   // console.log(selectedId, "셀렉티드 아이디");
-  const { id } = useParams();
+  // const { id } = useParams();
   // if (!modaltoggle) return null;
   const queryClient = useQueryClient();
   const { mutate: mutateToEdit } = useMutation({
@@ -22,7 +22,7 @@ export default function DetailModal({ setIsEditing, selectedId }) {
     },
   });
   const editDone = async () => {
-    mutateToEdit({ post, id });
+    mutateToEdit({ post, selectedId });
 
     // await setDoc(doc(db, "posts", `${selectedId}`), {
     //   star: post.star,
