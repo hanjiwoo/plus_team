@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const StMain = styled.main`
-  min-height: 100dvh;
+  max-height: 100%;
 `;
 
 // header.jsx

@@ -69,7 +69,7 @@ export default function TicTacToeGame() {
   const reset = () => {
     setLock(false);
     data = ["", "", "", "", "", "", "", "", ""];
-    titleRef.current.innerHTML = `틱택톡 <span>게임</span>`;
+    titleRef.current.innerHTML = `Tic Tac Toe <span>게임</span>`;
     boxArray.map((e) => {
       e.current.innerHTML = "";
     });
@@ -181,6 +181,7 @@ const ResetButton = styled.button`
   background: var(--yellow);
   font-size: 26px;
   color: white;
+  margin-bottom: 50px;
 `;
 
 const Boxs = styled.div`
