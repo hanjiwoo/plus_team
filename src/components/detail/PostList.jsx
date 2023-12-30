@@ -96,7 +96,7 @@ export default function PostList({ id }) {
       {isEditing && (
         <DetailModal setIsEditing={setIsEditing} selectedId={selectedId} />
       )}
-      <StP>- 게임 후기 -</StP>
+      <StP>- 댓글 모아보기 -</StP>
       <PostWrapper>
         {filteredposts.map((post) => {
           return (
@@ -129,7 +129,7 @@ export default function PostList({ id }) {
           maxLength={30}
         ></TextArea>
         <StBtn disabled={!isLogin} onClick={postHandler}>
-          작성하기
+          등록하기
         </StBtn>
       </StContent>
     </>
@@ -151,6 +151,7 @@ const TextArea = styled.textarea`
   padding: 10px;
   font-size: 15px;
   resize: none;
+  border-radius: 10px;
 `;
 
 const List = styled.div`
@@ -169,6 +170,7 @@ const List = styled.div`
 const StContent = styled.div`
   display: flex;
   justify-content: space-between;
+  padding: 10px;
 `;
 
 const StBtn = styled.button`
@@ -177,13 +179,14 @@ const StBtn = styled.button`
   font-size: 15px;
   color: white;
   background-color: #20b2aa;
-  border: 1px solid #20b2aa;
+  border: 1px solid;
 `;
 
 const StP = styled.p`
   margin: 50px 0px 0px 0px;
   font-size: 25px;
   text-align: left;
+  color: var(--purple);
 `;
 
 const StP2 = styled.p`

@@ -74,8 +74,11 @@ export default function MemoryCard() {
   }, []);
   return (
     <Content>
-      <h1>메모리 게임</h1> <p>횟수 : {turns}</p>
-      <button onClick={shuffleCards}>뉴게임</button>
+      <Text>
+        <p>뒤집은 횟수 : {turns}</p>
+        <button onClick={shuffleCards}>RESET</button>
+      </Text>
+
       <Grid>
         {cards.map((card) => {
           return (
@@ -97,6 +100,7 @@ const Content = styled.section`
   justify-content: center;
   flex-direction: column;
   align-items: center;
+  margin-bottom: 30px;
 `;
 
 const Grid = styled.div`
@@ -104,4 +108,20 @@ const Grid = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   grid-gap: 20px;
+`;
+
+const Text = styled.div`
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 30px;
+  font-size: 20px;
+
+  button {
+    cursor: pointer;
+    background-color: var(--yellow);
+    margin-top: 15px;
+    border-radius: 5px;
+  }
 `;

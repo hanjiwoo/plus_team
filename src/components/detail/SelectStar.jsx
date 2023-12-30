@@ -5,7 +5,7 @@ export default function SelectStar({ onChangeHandler, disabled }) {
   return (
     <StDiv>
       <select disabled={disabled} name="star" onChange={onChangeHandler}>
-        <option>별점을 선택해주세요.</option>
+        <option>별점을 선택해주세요</option>
         <option>⭐</option>
         <option>⭐⭐</option>
         <option>⭐⭐⭐</option>
