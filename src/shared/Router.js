@@ -10,6 +10,7 @@ import Signin from "../pages/Signin";
 import Register from "../pages/Register";
 import MyPage from "../pages/MyPage";
 import TicTacToe from "../pages/TicTacToe";
+import MineSearchPage from "./../pages/MineSearchPage";
 
 export default function Router() {
   return (
@@ -26,6 +27,7 @@ export default function Router() {
             <Route path="/register" element={<Register />} />
             <Route path="/mypage" element={<MyPage />} />
             <Route path="/tictactoe" element={<TicTacToe />} />
+            <Route path="/minesearch" element={<MineSearchPage />} />
             <Route path="*" element={<Navigate replace to="/" />} />
           </Route>
         </Routes>

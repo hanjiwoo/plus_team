@@ -96,7 +96,7 @@ export default function PostList({ id }) {
       {isEditing && (
         <DetailModal setIsEditing={setIsEditing} selectedId={selectedId} />
       )}
-      <StP>- 댓글 모아보기 -</StP>
+      <StP>- 게임 후기 -</StP>
       <PostWrapper>
         {filteredposts.map((post) => {
           return (
@@ -186,7 +186,7 @@ const StP = styled.p`
   margin: 50px 0px 0px 0px;
   font-size: 25px;
   text-align: left;
-  color: var(--purple);
+  color: black;
 `;
 
 const StP2 = styled.p`
