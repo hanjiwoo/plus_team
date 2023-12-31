@@ -126,7 +126,9 @@ const getTdText = (code) => {
     case CODE.MINE:
       return "";
     case CODE.CLICKED_MINE:
-      const boom = <FontAwesomeIcon icon={faBomb} />;
+      const boom = (
+        <FontAwesomeIcon icon={faBomb} style={{ fontSize: "23px" }} />
+      );
       return boom;
     case CODE.FLAG_MINE:
     case CODE.FLAG:

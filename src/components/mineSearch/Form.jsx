@@ -3,9 +3,9 @@ import { TableContext, START_GAME } from "./MineSearch";
 import styled from "styled-components";
 
 const Form = memo(() => {
-  const [row, setRow] = useState(15); // 세로
-  const [cell, setCell] = useState(15); // 가로
-  const [mine, setMine] = useState(30); // 지뢰 개수
+  const [row, setRow] = useState(10); // 세로
+  const [cell, setCell] = useState(10); // 가로
+  const [mine, setMine] = useState(15); // 지뢰 개수
   const { dispatch } = useContext(TableContext);
 
   // useCallback --> 불필요한 렌더링 방지

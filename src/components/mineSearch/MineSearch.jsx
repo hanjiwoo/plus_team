@@ -57,6 +57,7 @@ const StTimer = styled.div`
   justify-content: center;
   font-size: 40px;
   gap: 20px;
+
   .svg-inline--fa {
     font-size: inherit;
   }
@@ -76,6 +77,13 @@ const StFail = styled.div`
   font-size: 30px;
   font-weight: bold;
   color: #b52020;
+`;
+
+const StP = styled.p`
+  display: flex;
+  justify-content: center;
+  color: black;
+  margin-top: 50px;
 `;
 ////////////////////////
 
@@ -232,7 +240,7 @@ const reducer = (state, action) => {
         state.gameData.row * state.gameData.cell - state.gameData.mine
       ) {
         halted = true;
-        result = <p> {state.timer}초만에 성공하셨습니다 !! </p>;
+        result = <StP> {state.timer}초만에 성공하셨습니다 !! </StP>;
         isWin = true;
       }
 
