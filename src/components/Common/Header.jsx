@@ -40,7 +40,7 @@ export default function Header() {
                   onClick={() => {
                     Swal.fire({
                       title: "로그아웃",
-                      text: "다음에도 저희 RE-PLAY를 이용해주세요 !",
+                      text: "다음에도 RE-PLAY에 와주세요 !",
                       imageUrl: logo1,
                       imageWidth: 200,
                       imageHeight: 200,

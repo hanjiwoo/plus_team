@@ -98,6 +98,6 @@ const settings = {
   slidesToScroll: 2,
   variableWidth: true,
   autoplay: true,
-  autoplaySpeed: 4000,
+  autoplaySpeed: 3500,
   pauseOnHover: true,
 };
