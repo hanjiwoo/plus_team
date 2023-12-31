@@ -18,6 +18,9 @@ export default function DetailPage() {
       case "1":
         addr = "/speedgame";
         break;
+      case "2":
+        addr = "/minesearch";
+        break;
       case "3":
         addr = "/tictactoe";
         break;

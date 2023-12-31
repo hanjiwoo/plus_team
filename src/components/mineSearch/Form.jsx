@@ -1,10 +1,11 @@
-import React, { useState, useCallback, useContext } from "react";
+import React, { useState, useCallback, useContext, memo } from "react";
 import { TableContext, START_GAME } from "./MineSearch";
+import styled from "styled-components";
 
-const Form = () => {
-  const [row, setRow] = useState(10); // 줄 (세로)
-  const [cell, setCell] = useState(10); // 칸 (가로)
-  const [mine, setMine] = useState(20); // 지뢰 개수
+const Form = memo(() => {
+  const [row, setRow] = useState(15); // 세로
+  const [cell, setCell] = useState(15); // 가로
+  const [mine, setMine] = useState(30); // 지뢰 개수
   const { dispatch } = useContext(TableContext);
 
   // useCallback --> 불필요한 렌더링 방지
@@ -25,28 +26,51 @@ const Form = () => {
   }, [row, cell, mine]);
 
   return (
-    <div>
-      <input
+    <StDiv>
+      <StInput
         type="number"
         placeholder="세로"
         value={row}
         onChange={onChangeRow}
       />
-      <input
+      <StInput
         type="number"
         placeholder="가로"
         value={cell}
         onChange={onChangeCell}
       />
-      <input
+      <StInput
         type="number"
         placeholder="지뢰"
         value={mine}
         onChange={onChangeMine}
       />
-      <button onClick={onClickBtn}>시작</button>
-    </div>
+      <StBtn onClick={onClickBtn}>시작</StBtn>
+    </StDiv>
   );
-};
+});
 
 export default Form;
+
+const StDiv = styled.div`
+  display: flex;
+  margin-top: 50px;
+  justify-content: center;
+`;
+
+const StInput = styled.input`
+  width: 100px;
+  height: 30px;
+  font-size: 22px;
+  margin-right: 22px;
+  text-align: center;
+  border: 0;
+  text-indent: 17px;
+  border-bottom: 3px solid #000;
+`;
+
+const StBtn = styled.button`
+  width: 100px;
+  font-size: 17px;
+  font-weight: bold;
+`;
