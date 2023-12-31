@@ -38,7 +38,7 @@ export default function DetailPage() {
       <Content>
         <StH1>{myGame.title}</StH1>
         <StP>{myGame.explain}</StP>
-        <StBtn onClick={moveToGame}>게임하러가기</StBtn>
+        <StBtn onClick={moveToGame}>GO TO GAME</StBtn>
         <PostList id={id} />
       </Content>
     </StBox>
