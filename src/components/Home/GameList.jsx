@@ -9,6 +9,8 @@ import memory_src from "../../assets/images/memorygame.jpg";
 import speed_src from "../../assets/images/speedgame.jpg";
 import tic_src from "../../assets/images/tictactoe.jpg";
 import minesearch_src from "../../assets/images/minesearch.jpg";
+import { useQueryClient } from "@tanstack/react-query";
+import { getPosts } from "../detail/queryFn";
 
 const photo1 = speed_src;
 const photo2 = minesearch_src;
@@ -61,6 +63,13 @@ export default function GameList() {
     if (event.target.name === "like") return;
     navigate(addr);
   };
+  const queryClient = useQueryClient();
+  const mouseOverHandler = async () => {
+    await queryClient.prefetchQuery({
+      queryKey: ["posts"],
+      queryFn: getPosts,
+    });
+  };
 
   return (
     <AllSlide>
@@ -68,6 +77,7 @@ export default function GameList() {
         {gameList.map((game) => {
           return (
             <div
+              onMouseOver={mouseOverHandler}
               onClick={(event) => pageMover(event, `/detail/${game.id}`)}
               key={game.id}
             >

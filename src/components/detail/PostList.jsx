@@ -6,6 +6,7 @@ import SelectStar from "./SelectStar";
 import { useSelector } from "react-redux";
 import { addPost, deletePost, getPosts } from "./queryFn";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import Swal from "sweetalert2";
 
 export default function PostList({ id }) {
   const [post, setPost] = useState({ star: "", text: "" });
@@ -48,9 +49,20 @@ export default function PostList({ id }) {
   //   });
   // };
   const postHandler = async () => {
-    if (!post.text) return alert("내용을 입력해주세요");
+    if (!post.text)
+      return Swal.fire({
+        title: "텍스트 없어요",
+        text: "텍스트 쓰세요",
+        icon: "warning", // success, error, warning, info 등의 아이콘 지정 가능
+        confirmButtonText: "확인",
+      });
     if (!post.star || post.star === "별점을 선택해주세요")
-      return alert("별점을 입력해주세요");
+      return Swal.fire({
+        title: "별점이 없어요",
+        text: "별점을 고르세요",
+        icon: "warning", // success, error, warning, info 등의 아이콘 지정 가능
+        confirmButtonText: "확인",
+      });
 
     mutateToAdd({ post, id, uid });
     // await addDoc(collection(db, "posts"), {
@@ -153,6 +165,7 @@ const PostWrapper = styled.div`
   flex-direction: column;
   width: 800px;
   height: 250px;
+  gap: 5px;
 `;
 
 const TextArea = styled.textarea`
@@ -200,7 +213,7 @@ const StP = styled.p`
 `;
 
 const StP2 = styled.p`
-  width: 200px;
+  width: 300px;
 `;
 
 const StP3 = styled.p`
