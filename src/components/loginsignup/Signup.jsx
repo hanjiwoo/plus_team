@@ -5,6 +5,7 @@ import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import heart from "../../assets/images/heart.png";
+import erroricon from "../../assets/images/erroricon.png";
 
 export default function Signup() {
   const [email, setEmail] = useState("");
@@ -18,43 +19,49 @@ export default function Signup() {
     //
   }, []);
 
-  const signUp = async (e) => {
-    try {
-      // Firebase Authentication을 사용하여 계정 생성
-      e.preventDefault();
-      const userCredential = await createUserWithEmailAndPassword(
-        auth,
-        email,
-        password
-      );
-      updateProfile(userCredential.user, {
-        displayName: nickName,
-      });
-      await auth.signOut();
-      setEmail("");
-      setPassword("");
-      setPasswdCheck("");
-      setNickName("");
-      Swal.fire({
-        title: "회원가입 완료",
-        text: "로그인 화면으로 이동합니다 !",
-        imageUrl: heart,
-        imageWidth: 200,
-        imageHeight: 200,
-        imageAlt: "Custom image",
-      });
-      navigate("/Signin");
-    } catch (error) {
-      const errorCode = error.code;
-      const errorMessage = error.errorMessage;
-      console.log("error with signUp", errorCode, errorMessage);
-      Swal.fire(
-        "회원가입 실패",
-        "중복이거나 사용할 수 없는 이메일 입니다.",
-        "error"
-      );
-    }
-  };
+      const signUp = async (e) => {
+        try {
+          e.preventDefault();
+          const userCredential = await createUserWithEmailAndPassword(
+            auth,
+            email,
+            password
+          );
+          updateProfile(userCredential.user, {
+            displayName: nickName,
+          });
+          await auth.signOut();
+          setEmail("");
+          setPassword("");
+          setPasswdCheck("");
+          setNickName("");
+          Swal.fire({
+            title: "회원가입 성공",
+            text: "로그인 화면으로 이동합니다.",
+            confirmButtonColor: '#20b2aa',
+            confirmButtonText: '확인',
+            imageUrl: heart,
+            imageWidth: 130,
+            imageHeight: 130,
+            imageAlt: "Custom image",
+          });
+          navigate('/Signin')
+        } catch (error) {
+          const errorCode = error.code;
+          const errorMessage = error.errorMessage;
+          console.log("error with signUp", errorCode, errorMessage);
+          Swal.fire({
+            title: "회원가입 실패",
+            text: "중복이거나 사용할 수 없는 이메일 입니다.",
+            confirmButtonColor: '#ef4040',
+            confirmButtonText: '확인',
+            imageUrl: erroricon,
+            imageWidth: 130,
+            imageHeight: 130,
+            imageAlt: "Custom image"
+          });
+        }
+      };
 
   const onChange = (e) => {
     const {
@@ -108,7 +115,7 @@ export default function Signup() {
               required
             />
             {passwdCheck !== "" && password !== passwdCheck && (
-              <P>비밀번호가 일치하지 않습니다.</P>
+              <P> 비밀번호가 일치하지 않습니다.</P>
             )}
             <Input
               type="text"
@@ -150,7 +157,7 @@ export default function Signup() {
 }
 
 const Container = styled.div`
-  margin-top: 200px;
+  margin-top: 130px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -164,7 +171,7 @@ const Form = styled.form`
   display: flex;
   flex-direction: column;
   gap: 12px;
-  width: 400px;
+  width: 380px;
 `;
 
 const Title = styled.h1`
@@ -212,6 +219,6 @@ const Button = styled.button`
 `;
 
 const P = styled.p`
-  font-size: 15px;
-  color: #ffa559;
+  font-size: 14px;
+  color: #ffc436;
 `;

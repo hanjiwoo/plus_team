@@ -48,7 +48,9 @@ export default function PostList({ id }) {
   //   });
   // };
   const postHandler = async () => {
-    if (!post.star || !post.text) return alert("별점과 내용을 입력해주세요");
+    if (!post.text) return alert("내용을 입력해주세요");
+    if (!post.star || post.star === "별점을 선택해주세요")
+      return alert("별점을 입력해주세요");
 
     mutateToAdd({ post, id, uid });
     // await addDoc(collection(db, "posts"), {
@@ -94,7 +96,11 @@ export default function PostList({ id }) {
   return (
     <>
       {isEditing && (
-        <DetailModal setIsEditing={setIsEditing} selectedId={selectedId} />
+        <DetailModal
+          setIsEditing={setIsEditing}
+          value={post.star}
+          selectedId={selectedId}
+        />
       )}
       <StP>- 게임 후기 -</StP>
       <PostWrapper>
@@ -115,7 +121,11 @@ export default function PostList({ id }) {
           );
         })}
       </PostWrapper>
-      <SelectStar disabled={!isLogin} onChangeHandler={onChangeHandler} />
+      <SelectStar
+        disabled={!isLogin}
+        value={post.star}
+        onChangeHandler={onChangeHandler}
+      />
       <StContent>
         <TextArea
           name="text"
@@ -158,7 +168,7 @@ const List = styled.div`
   width: 90%;
   height: 15px;
   display: flex;
-  padding-top: 20px;
+  padding-top: 30px;
   justify-content: space-between;
   align-items: center;
   margin-top: 10px;
@@ -184,6 +194,7 @@ const StBtn = styled.button`
 
 const StP = styled.p`
   margin: 50px 0px 0px 0px;
+  padding: 5px;
   font-size: 25px;
   text-align: left;
   color: black;
