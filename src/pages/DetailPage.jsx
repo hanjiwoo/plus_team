@@ -16,7 +16,7 @@ export default function DetailPage() {
     let addr = "";
     switch (id) {
       case "1":
-        addr = "/speedgame";
+        addr = "/memorycard";
         break;
       case "2":
         addr = "/minesearch";
@@ -25,7 +25,7 @@ export default function DetailPage() {
         addr = "/tictactoe";
         break;
       case "4":
-        addr = "/memorycard";
+        addr = "/speedgame";
         break;
       default:
         addr = "/";
