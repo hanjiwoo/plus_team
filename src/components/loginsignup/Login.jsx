@@ -11,6 +11,8 @@ import authSlice, { login } from "../../redux/modules/authSlice";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import heart from "../../assets/images/heart.png";
+import erroricon from "../../assets/images/erroricon.png";
+
 
 export default function Login() {
   const [email, setEmail] = useState("");
@@ -41,8 +43,8 @@ export default function Login() {
         title: "로그인 성공",
         text: userCredential.user.displayName + ` 님 환영합니다 !`,
         imageUrl: heart,
-        imageWidth: 200,
-        imageHeight: 200,
+        imageWidth: 130,
+        imageHeight: 130,
         imageAlt: "Custom image",
       });
       navigate("/");
@@ -50,11 +52,16 @@ export default function Login() {
       const errorCode = error.code;
       const errorMessage = error.message;
       console.log("error with LogIn", errorCode, errorMessage);
-      Swal.fire(
-        "로그인 실패",
-        "등록되지 않은 회원이거나 유효하지 않은 이메일입니다",
-        "error"
-      );
+      Swal.fire({
+        title: "로그인 실패",
+        text: "이메일 및 비밀번호를 다시 확인 해 주시기 바랍니다.",
+        confirmButtonColor: '#ef4040',
+        confirmButtonText: '확인',
+        imageUrl: erroricon,
+        imageWidth: 130,
+        imageHeight: 130,
+        imageAlt: "Custom image"
+      });
     }
   };
 
@@ -77,10 +84,10 @@ export default function Login() {
       );
       Swal.fire({
         title: "로그인 성공",
-        text: "RE-PLAY에 오신 것을 환영합니다 !",
+        text: result.user.displayName + ` 님 환영합니다 !`,
         imageUrl: heart,
-        imageWidth: 200,
-        imageHeight: 200,
+        imageWidth: 130,
+        imageHeight: 130,
         imageAlt: "Custom image",
       });
       navigate("/");
@@ -149,18 +156,17 @@ const Container = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 200px;
+  margin-top: 130px;
 `;
 
 const Form = styled.form`
   background-color: #ffffff;
-  outline-color: #ffffff;
   border-radius: 12px;
   padding: 22px;
   display: flex;
   flex-direction: column;
   gap: 12px;
-  width: 400px;
+  width: 380px;
 `;
 
 const Title = styled.h1`
@@ -208,13 +214,15 @@ const Button = styled.button`
 `;
 
 const GoogleButton = styled.button`
-  background-color: ${(props) => (props.disabled ? "lightgray" : "#999")};
-  cursor: ${(props) => (props.disabled ? "default" : "pointer")};
   color: #ffffff;
   border: none;
+  cursor: pointer;
   margin-top: 4px;
   margin-bottom: 2px;
   padding: 12px 0;
   font-size: 18px;
   border-radius: 10px;
+  &:hover{
+    background-color: #ffc436;
+  }
 `;
