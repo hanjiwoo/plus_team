@@ -42,8 +42,8 @@ export default function Header() {
                       title: "로그아웃",
                       text: "다음에도 저희 RE-PLAY를 이용해주세요 !",
                       imageUrl: logo1,
-                      imageWidth: 200,
-                      imageHeight: 200,
+                      imageWidth: 130,
+                      imageHeight: 130,
                       imageAlt: "Custom image",
                     });
                     dispatch(logout());
