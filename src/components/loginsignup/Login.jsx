@@ -41,7 +41,7 @@ export default function Login() {
       );
       Swal.fire({
         title: "로그인 성공",
-        text: userCredential.user.displayName + ` 님 환영합니다 !`,
+        text: userCredential.user.displayName + `님 환영합니다!`,
         confirmButtonColor: '#20b2aa',
         confirmButtonText: '확인',
         imageUrl: heart,
@@ -86,7 +86,7 @@ export default function Login() {
       );
       Swal.fire({
         title: "로그인 성공",
-        text: result.user.displayName + ` 님 환영합니다 !`,
+        text: result.user.displayName + `님 환영합니다!`,
         confirmButtonColor: '#20b2aa',
         confirmButtonText: '확인',
         imageUrl: heart,
