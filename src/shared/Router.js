@@ -8,9 +8,9 @@ import GlobalFonts from "../assets/fonts/GlobalFonts";
 import SpeedGamePage from "../pages/SpeedGamePage";
 import Signin from "../pages/Signin";
 import Register from "../pages/Register";
-import MyPage from "../pages/MyPage";
 import TicTacToe from "../pages/TicTacToe";
 import MineSearchPage from "./../pages/MineSearchPage";
+import ResponseCheckPage from "../pages/ResponseCheckPage";
 
 export default function Router() {
   return (
@@ -25,9 +25,9 @@ export default function Router() {
             <Route path="/detail/:id" element={<DetailPage />} />
             <Route path="/signin" element={<Signin />} />
             <Route path="/register" element={<Register />} />
-            <Route path="/mypage" element={<MyPage />} />
             <Route path="/tictactoe" element={<TicTacToe />} />
             <Route path="/minesearch" element={<MineSearchPage />} />
+            <Route path="/responsecheck" element={<ResponseCheckPage />} />
             <Route path="*" element={<Navigate replace to="/" />} />
           </Route>
         </Routes>

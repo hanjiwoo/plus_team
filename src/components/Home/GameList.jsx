@@ -12,30 +12,30 @@ import minesearch_src from "../../assets/images/minesearch.jpg";
 import { useQueryClient } from "@tanstack/react-query";
 import { getPosts } from "../detail/queryFn";
 
-const photo1 = speed_src;
+const photo1 = memory_src;
 const photo2 = minesearch_src;
 const photo3 = tic_src;
-const photo4 = memory_src;
+const photo4 = speed_src;
 export const gameList = [
   {
     id: "1",
-    title: "순발력게임",
+    title: "메모리게임",
     photo: photo1,
-    content: "누구보다 빠른 속도를 보여주세요!",
-    explain: `1 ~ 50 까지의 숫자가 무작위로 배치됩니다. 
-      숫자를 순서대로 다 누르면 성공 ! 
-      누구보다 빠른 속도를 보여주세요 !`,
+    content: "포켓몬의 짝을 찾아주세요!",
+    explain: `뒤집어져 있는 카드를 하나씩 열어보면서 
+      같은 그림의 카드를 맞춰보세요. 
+      포켓몬의 짝을 찾아주세요 !`,
   },
   {
     id: "2",
     title: "지뢰찾기",
     photo: photo2,
-    content: "펑 ~~!! 지뢰를 피해 게임을 성공하세요!",
+    content: "펑 ~~! 지뢰를 피해 게임을 성공하세요!",
     explain: `무작위로 지뢰가 깔려 있습니다.
     지뢰가 없는 칸을 열면 숫자가 적혀 있습니다.
     이 숫자는 주변에 있는 지뢰의 개수를 의미합니다.
     지뢰를 피해서 모든 칸을 열면 성공 !
-    가로, 세로 칸 수와 지뢰의 개수를 직접 선택하며 여러 난이도를 즐겨보세요 !`,
+    가로, 세로 칸 수와 지뢰의 개수를 직접 선택하여 여러 난이도를 즐겨보세요 !`,
   },
   {
     id: "3",
@@ -48,12 +48,20 @@ export const gameList = [
   },
   {
     id: "4",
-    title: "메모리게임",
+    title: "순발력게임",
     photo: photo4,
-    content: "포켓몬의 짝을 찾아주세요!",
-    explain: `뒤집어져 있는 카드를 하나씩 열어보면서 
-      같은 그림의 카드를 맞춰보세요. 
-      포켓몬의 짝을 찾아주세요 !`,
+    content: "누구보다 빠른 속도를 보여주세요!",
+    explain: `1 ~ 50 까지의 숫자가 무작위로 배치됩니다. 
+        숫자를 순서대로 다 누르면 성공 ! 
+        누구보다 빠른 속도를 보여주세요 !`,
+  },
+  {
+    id: "5",
+    title: "반응속도게임",
+    photo: photo4,
+    content: "당신의 반응 속도를 보여주세요!",
+    explain: `화면의 색이 바뀔 때 빠른 속도로 클릭을 해줍니다.
+        당신의 반응 속도를 보여주세요 !`,
   },
 ];
 
@@ -107,6 +115,6 @@ const settings = {
   slidesToScroll: 2,
   variableWidth: true,
   autoplay: true,
-  autoplaySpeed: 4000,
+  autoplaySpeed: 3500,
   pauseOnHover: true,
 };

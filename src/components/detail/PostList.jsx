@@ -181,7 +181,7 @@ const List = styled.div`
   width: 90%;
   height: 15px;
   display: flex;
-  padding-top: 20px;
+  padding-top: 30px;
   justify-content: space-between;
   align-items: center;
   margin-top: 10px;
@@ -207,6 +207,7 @@ const StBtn = styled.button`
 
 const StP = styled.p`
   margin: 50px 0px 0px 0px;
+  padding: 5px;
   font-size: 25px;
   text-align: left;
   color: black;
