@@ -32,15 +32,12 @@ export default function Header() {
           <Stbutton>
             {isLogin ? (
               <>
-                <Link to="/mypage">
-                  <button>마이페이지</button>
-                </Link>
                 <button
                   size="large"
                   onClick={() => {
                     Swal.fire({
                       title: "로그아웃",
-                      text: "다음에도 저희 RE-PLAY를 이용해주세요 !",
+                      text: "다음에도 RE-PLAY에 와주세요 !",
                       imageUrl: logo1,
                       imageWidth: 130,
                       imageHeight: 130,
