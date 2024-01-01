@@ -60,16 +60,16 @@ export default function TicTacToeGame() {
   const won = (winner) => {
     setLock(true);
     if (winner === "x") {
-      titleRef.current.innerHTML = `축하합니다. <img src=${cross}> 승리`;
+      titleRef.current.innerHTML = `축하합니다 <img src=${cross}> 승리 !`;
     } else {
-      titleRef.current.innerHTML = `축하합니다. <img src=${circle}> 승리`;
+      titleRef.current.innerHTML = `축하합니다 <img src=${circle}> 승리 !`;
     }
   };
 
   const reset = () => {
     setLock(false);
     data = ["", "", "", "", "", "", "", "", ""];
-    titleRef.current.innerHTML = `틱택톡 <span>게임</span>`;
+    titleRef.current.innerHTML = `Tic Tac Toe <span>게임</span>`;
     boxArray.map((e) => {
       e.current.innerHTML = "";
     });
@@ -77,9 +77,7 @@ export default function TicTacToeGame() {
   return (
     <>
       <Container>
-        <Title ref={titleRef}>
-          틱택토 <span>게임 </span>
-        </Title>
+        <Title ref={titleRef}>Tic Tac Toe 게임</Title>
         <Board>
           <Row1>
             <Boxs
@@ -159,16 +157,15 @@ const Container = styled.section`
 `;
 const Title = styled.div`
   margin-top: 50px;
-  color: lightblue;
+  color: white;
   font-size: 60px;
   display: flex;
   justify-content: center;
   align-items: center;
-
-  & span {
-    color: lightskyblue;
-    padding-left: 15px;
-  }
+  text-shadow: -5px 5px #ffa732, 0px 5px #ffa732, 1px 0px #ffa732,
+    0px -1px #ffa732;
+  margin-bottom: 30px;
+  gap: 30px;
 
   & img {
     height: 50px;
@@ -181,10 +178,9 @@ const ResetButton = styled.button`
   outline: none;
   cursor: pointer;
   border-radius: 50px;
-  background: lightcoral;
+  background: var(--yellow);
   font-size: 26px;
-  color: lightcyan;
-  margin-top: 25px;
+  color: white;
   margin-bottom: 50px;
 `;
 
@@ -192,8 +188,8 @@ const Boxs = styled.div`
   display: flex;
   height: 180px;
   width: 180px;
-  background: black;
-  border: 4px solid lightgray;
+  background: var(--green);
+  border: 4px solid white;
   cursor: pointer;
   & img {
     margin: 30px 30px;

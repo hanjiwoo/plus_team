@@ -38,7 +38,7 @@ export default function DetailModal({ setIsEditing, selectedId }) {
     <ContentWrapper>
       <Content>
         <select name="star" onChange={onChangeHandler}>
-          <option>별점고르세요</option>
+          <option>별점을 선택해주세요.</option>
           <option>⭐</option>
           <option>⭐⭐</option>
           <option>⭐⭐⭐</option>
@@ -49,19 +49,19 @@ export default function DetailModal({ setIsEditing, selectedId }) {
           name="text"
           value={post.text}
           onChange={onChangeHandler}
-          placeholder="게임을 평가해주세요 최대 30자"
+          placeholder="게임을 평가해주세요. (30 글자 이내)"
           maxLength={30}
         ></TextArea>
         <BtnWrapper>
-          <CloseBtn
+          <StBtn
             onClick={() => {
               setIsEditing(false);
               // navigate(`/detail/${id}`);
             }}
           >
-            수정취소
-          </CloseBtn>
-          <button onClick={editDone}>수정완료</button>
+            취소
+          </StBtn>
+          <StBtn onClick={editDone}>수정</StBtn>
         </BtnWrapper>
       </Content>
     </ContentWrapper>
@@ -81,28 +81,35 @@ const ContentWrapper = styled.div`
 `;
 const Content = styled.div`
   display: flex;
-  align-items: center;
+  align-items: end;
   justify-content: center;
   flex-direction: column;
-  background: lightcoral;
-  padding: 20px;
-  border-radius: 8px;
-  width: 500px;
-  height: 500px;
+  background: white;
+  padding-right: 50px;
+  border-radius: 20px;
+  width: 800px;
+  height: 200px;
   overflow: auto;
   position: relative;
 `;
 
-const CloseBtn = styled.button`
+const StBtn = styled.button`
   cursor: pointer;
+  border: none;
+  border-radius: 5px;
+  font-size: 12px;
+  padding: 5px;
+  margin-top: 10px;
+  margin-right: 5px;
+  width: 50px;
+  background-color: #ffa732;
 `;
 
 const BtnWrapper = styled.div`
   display: flex;
 `;
 const TextArea = styled.textarea`
-  width: 400px;
-  height: 50px;
-
+  width: 700px;
+  height: 70px;
   resize: none;
 `;

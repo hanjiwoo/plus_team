@@ -48,7 +48,7 @@ export default function PostList({ id }) {
   //   });
   // };
   const postHandler = async () => {
-    if (!post.star || !post.text) return alert("별점과 내용을 선택해주세요");
+    if (!post.star || !post.text) return alert("별점과 내용을 입력해주세요");
 
     mutateToAdd({ post, id, uid });
     // await addDoc(collection(db, "posts"), {
@@ -96,22 +96,18 @@ export default function PostList({ id }) {
       {isEditing && (
         <DetailModal setIsEditing={setIsEditing} selectedId={selectedId} />
       )}
-
+      <StP>- 게임 후기 -</StP>
       <PostWrapper>
         {filteredposts.map((post) => {
           return (
             <List key={post.id}>
-              <p>{post.star}</p>
-              <p> {post.content}</p>
+              <StP3>{post.star}</StP3>
+              <StP2> {post.content}</StP2>
               <div>
                 {uid === post.uid && (
                   <>
-                    <button onClick={() => editHandler(post.id)}>
-                      수정하기
-                    </button>
-                    <button onClick={() => deleteHandler(post.id)}>
-                      삭제하기
-                    </button>
+                    <StBtn2 onClick={() => editHandler(post.id)}>수정</StBtn2>
+                    <StBtn2 onClick={() => deleteHandler(post.id)}>삭제</StBtn2>
                   </>
                 )}
               </div>
@@ -120,20 +116,22 @@ export default function PostList({ id }) {
         })}
       </PostWrapper>
       <SelectStar disabled={!isLogin} onChangeHandler={onChangeHandler} />
-      <TextArea
-        name="text"
-        value={post.text}
-        onChange={onChangeHandler}
-        placeholder={
-          isLogin
-            ? "게임을 평가해주세요 최대 30자"
-            : "로그인을 하셔야 게임평가를 하실수 있어요"
-        }
-        maxLength={30}
-      ></TextArea>
-      <button disabled={!isLogin} onClick={postHandler}>
-        제출하기
-      </button>
+      <StContent>
+        <TextArea
+          name="text"
+          value={post.text}
+          onChange={onChangeHandler}
+          placeholder={
+            isLogin
+              ? "게임을 평가해주세요. (30 글자 이내)"
+              : "로그인이 필요합니다."
+          }
+          maxLength={30}
+        ></TextArea>
+        <StBtn disabled={!isLogin} onClick={postHandler}>
+          등록하기
+        </StBtn>
+      </StContent>
     </>
   );
 }
@@ -144,25 +142,67 @@ const PostWrapper = styled.div`
   align-items: center;
   flex-direction: column;
   width: 800px;
-  height: 300px;
-  background-color: lightseagreen;
+  height: 250px;
 `;
 
 const TextArea = styled.textarea`
-  width: 400px;
-  height: 50px;
-
+  width: 700px;
+  height: 70px;
+  padding: 10px;
+  font-size: 15px;
   resize: none;
+  border-radius: 10px;
 `;
 
 const List = styled.div`
   width: 90%;
   height: 15px;
   display: flex;
+  padding-top: 20px;
   justify-content: space-between;
   align-items: center;
   margin-top: 10px;
   & input {
     width: 400px;
   }
+`;
+
+const StContent = styled.div`
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+`;
+
+const StBtn = styled.button`
+  width: 100px;
+  border-radius: 5px;
+  font-size: 15px;
+  color: white;
+  background-color: #20b2aa;
+  border: 1px solid;
+`;
+
+const StP = styled.p`
+  margin: 50px 0px 0px 0px;
+  font-size: 25px;
+  text-align: left;
+  color: black;
+`;
+
+const StP2 = styled.p`
+  width: 200px;
+`;
+
+const StP3 = styled.p`
+  width: 0px;
+`;
+
+const StBtn2 = styled.button`
+  border: none;
+  border-radius: 5px;
+  font-size: 12px;
+  padding: 5px;
+  margin-right: 5px;
+  width: 50px;
+  background-color: #ffa732;
 `;
