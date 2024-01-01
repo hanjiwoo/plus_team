@@ -69,10 +69,10 @@ export default function Login() {
       const result = await signInWithPopup(auth, Provider);
       dispatch(
         login({
-          email: result.email,
-          displayName: result.displayName,
-          uid: result.uid,
-          photoURL: result.photoURL,
+          email: result.user.email,
+          displayName: result.user.displayName,
+          uid: result.user.uid,
+          photoURL: result.user.photoURL,
         })
       );
       Swal.fire({
