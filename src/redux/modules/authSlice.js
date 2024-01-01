@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  isLogin: !!localStorage.getItem("accessToken"),
+  isLogin: !!localStorage.getItem("uid"),
   email: localStorage.getItem("email"),
   displayName: localStorage.getItem("displayName"),
   uid: localStorage.getItem("uid"),
@@ -23,7 +23,7 @@ const authSlice = createSlice({
       state.displayName = displayName;
       state.uid = uid;
       state.photoURL = photoURL;
-      console.log(displayName)
+      console.log(displayName);
     },
     logout: (state, action) => {
       localStorage.clear();

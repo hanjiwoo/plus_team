@@ -5,6 +5,8 @@ import HeartFull from "../../assets/images/HeartFull.png";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { addHeart, deleteHeart, getHeart } from "./queryFns";
 import { useSelector } from "react-redux";
+import Swal from "sweetalert2";
+
 export default function LikeBtn({ name, id }) {
   const { isLogin, uid /* email, displayName,  photoURL */ } = useSelector(
     (state) => state.authSlice
@@ -48,7 +50,7 @@ export default function LikeBtn({ name, id }) {
   // console.log(filterdHeart1, "이거 하트들");
   const selectedId = filterdHeart1?.id;
   const likeBTN = () => {
-    if (!isLogin) return alert("로그인부터하세요");
+    if (!isLogin) return Swal.fire("로그인 후에 이용이 가능합니다.");
     // setLIke(!like);
 
     if (filterdHeart1) {
@@ -73,7 +75,7 @@ export default function LikeBtn({ name, id }) {
             <img name={name} src={HeartEmpty} alt="빈하트"></img>
           )}
         </ImageWrapper>
-        <p>좋아요개수 :{filteredHearts?.length}</p>{" "}
+        <StP> {filteredHearts?.length}</StP>{" "}
       </ImageCount>
       <div></div>
     </>
@@ -98,12 +100,14 @@ export default function LikeBtn({ name, id }) {
 const ImageCount = styled.div`
   display: flex;
   align-items: center;
+  justify-content: flex-end;
+  width: 60%;
   gap: 10px;
 `;
 
 const ImageWrapper = styled.div`
-  width: 50px;
-  height: 50px;
+  width: 30px;
+  height: 30px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -114,4 +118,10 @@ const ImageWrapper = styled.div`
     width: 100%;
     height: 100%;
   }
+`;
+
+const StP = styled.p`
+  color: var(--red);
+  font-size: 20px;
+  text-align: center;
 `;

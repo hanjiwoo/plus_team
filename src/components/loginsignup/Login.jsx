@@ -10,6 +10,9 @@ import { useDispatch } from "react-redux";
 import authSlice, { login } from "../../redux/modules/authSlice";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
+import heart from "../../assets/images/heart.png";
+import erroricon from "../../assets/images/erroricon.png";
+
 
 export default function Login() {
   const [email, setEmail] = useState("");
@@ -36,49 +39,64 @@ export default function Login() {
           photoURL: userCredential.user.photoURL,
         })
       );
-      Swal.fire(
-        "로그인 성공",
-        userCredential.user.displayName + "님 RE-PLAY의 오신걸 환영합니다.",
-        "success"
-      );
+      Swal.fire({
+        title: "로그인 성공",
+        text: userCredential.user.displayName + ` 님 환영합니다 !`,
+        imageUrl: heart,
+        imageWidth: 130,
+        imageHeight: 130,
+        imageAlt: "Custom image",
+      });
       navigate("/");
-
     } catch (error) {
       const errorCode = error.code;
       const errorMessage = error.message;
       console.log("error with LogIn", errorCode, errorMessage);
-      Swal.fire(
-        "로그인 실패",
-        "등록되지 않은 회원이거나 유효하지 않은 이메일입니다",
-        "error"
-      );
+      Swal.fire({
+        title: "로그인 실패",
+        text: "이메일 및 비밀번호를 다시 확인 해 주시기 바랍니다.",
+        confirmButtonColor: '#ef4040',
+        confirmButtonText: '확인',
+        imageUrl: erroricon,
+        imageWidth: 130,
+        imageHeight: 130,
+        imageAlt: "Custom image"
+      });
     }
   };
 
-      const GoogleLogin = async (e) => {
-        e.preventDefault();
-    
-        const Provider = new GoogleAuthProvider();
-        Provider.setCustomParameters({
-          prompt: "select_account",
-        });
-        try {
-          const result = await signInWithPopup(auth, Provider);    
-          dispatch(login({
-            email: result.email,
-            displayName: result.displayName,
-            uid: result.uid,
-            photoURL : result.photoURL
-          }));
-          Swal.fire('로그인 성공', 'RE-PLAY의 오신걸 환영합니다. ', 'success');
-          navigate('/');
+  const GoogleLogin = async (e) => {
+    e.preventDefault();
 
-        } catch (error) {
-          const errorCode = error.code;
-          const errorMessage = error.message;
-          console.log("error with googleLogIn", errorCode, errorMessage);
-        }
-      };
+    const Provider = new GoogleAuthProvider();
+    Provider.setCustomParameters({
+      prompt: "select_account",
+    });
+    try {
+      const result = await signInWithPopup(auth, Provider);
+      dispatch(
+        login({
+          email: result.user.email,
+          displayName: result.user.displayName,
+          uid: result.user.uid,
+          photoURL: result.user.photoURL,
+        })
+      );
+      Swal.fire({
+        title: "로그인 성공",
+        text: result.user.displayName + ` 님 환영합니다 !`,
+        imageUrl: heart,
+        imageWidth: 130,
+        imageHeight: 130,
+        imageAlt: "Custom image",
+      });
+      navigate("/");
+    } catch (error) {
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      console.log("error with googleLogIn", errorCode, errorMessage);
+    }
+  };
 
   const onChange = (e) => {
     const {
@@ -138,17 +156,17 @@ const Container = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-top: 130px;
 `;
 
 const Form = styled.form`
   background-color: #ffffff;
-  outline-color: #ffffff;
   border-radius: 12px;
   padding: 22px;
   display: flex;
   flex-direction: column;
   gap: 12px;
-  width: 400px;
+  width: 380px;
 `;
 
 const Title = styled.h1`
@@ -184,7 +202,7 @@ const ButtonContainer = styled.div`
 `;
 
 const Button = styled.button`
-  background-color: ${(props) => (props.disabled ? "lightgray" : "#FF6000")};
+  background-color: ${(props) => (props.disabled ? "lightgray" : "#20b2aa")};
   cursor: ${(props) => (props.disabled ? "default" : "pointer")};
   color: #ffffff;
   border: none;
@@ -192,23 +210,19 @@ const Button = styled.button`
   margin-bottom: 2px;
   padding: 12px 0;
   font-size: 18px;
-
-  &:hover {
-    background-color: ${(props) => (props.disabled ? "lightgray" : "#6b6b6b")};
-  }
+  border-radius: 10px;
 `;
 
 const GoogleButton = styled.button`
-  background-color: ${(props) => (props.disabled ? "lightgray" : "#FFA559")};
-  cursor: ${(props) => (props.disabled ? "default" : "pointer")};
   color: #ffffff;
   border: none;
+  cursor: pointer;
   margin-top: 4px;
   margin-bottom: 2px;
   padding: 12px 0;
   font-size: 18px;
-
-  &:hover {
-    background-color: ${(props) => (props.disabled ? "lightgray" : "#6b6b6b")};
+  border-radius: 10px;
+  &:hover{
+    background-color: #ffc436;
   }
 `;

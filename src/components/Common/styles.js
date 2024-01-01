@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const StMain = styled.main`
-  min-height: 100dvh;
+  max-height: 100%;
 `;
 
 // header.jsx
@@ -57,7 +57,6 @@ export const Stbutton = styled.button`
     border-radius: 10px;
 
     &:hover {
-      border: solid var(--green);
       transform: scale(1.05);
     }
   }
