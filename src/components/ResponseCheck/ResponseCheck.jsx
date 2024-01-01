@@ -1,4 +1,4 @@
-import React, { useState, useRef, useCallback, useMemo } from "react";
+import React, { useState, useRef, useCallback } from "react";
 import { StContainer, Stscreen, StText, StTime } from "./style";
 
 const ResponseCheck = () => {
