@@ -27,6 +27,9 @@ export default function DetailPage() {
       case "4":
         addr = "/speedgame";
         break;
+      case "5":
+        addr = "/responsecheck";
+        break;
       default:
         addr = "/";
     }

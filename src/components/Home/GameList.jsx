@@ -53,6 +53,15 @@ export const gameList = [
         숫자를 순서대로 다 누르면 성공 ! 
         누구보다 빠른 속도를 보여주세요 !`,
   },
+  {
+    id: "5",
+    title: "반응속도게임",
+    photo: photo4,
+    content: "당신의 반응 속도를 보여주세요!",
+    explain: `1 ~ 50 까지의 숫자가 무작위로 배치됩니다. 
+        숫자를 순서대로 다 누르면 성공 ! 
+        당신의 반응 속도를 보여주세요 !`,
+  },
 ];
 
 export default function GameList() {

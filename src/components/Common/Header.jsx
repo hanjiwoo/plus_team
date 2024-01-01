@@ -32,9 +32,6 @@ export default function Header() {
           <Stbutton>
             {isLogin ? (
               <>
-                <Link to="/mypage">
-                  <button>마이페이지</button>
-                </Link>
                 <button
                   size="large"
                   onClick={() => {
