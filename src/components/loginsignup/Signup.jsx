@@ -20,7 +20,6 @@ export default function Signup() {
 
       const signUp = async (e) => {
         try {
-          // Firebase Authentication을 사용하여 계정 생성
           e.preventDefault();
           const userCredential = await createUserWithEmailAndPassword(
             auth,
