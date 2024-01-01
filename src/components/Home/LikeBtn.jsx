@@ -25,14 +25,49 @@ export default function LikeBtn({ name, id }) {
   const queryClient = useQueryClient();
   const { mutate: mutateToAdd } = useMutation({
     mutationFn: addHeart,
-    onSuccess: async () => {
-      await queryClient.invalidateQueries({ queryKey: ["hearts"] });
+    // onSuccess: async () => {
+    //   await queryClient.invalidateQueries({ queryKey: ["hearts"] });
+    // },
+    onMutate: async (newHeart) => {
+      await queryClient.cancelQueries({ queryKey: ["hearts"] });
+
+      const previousHearts = queryClient.getQueryData(["hearts"]);
+
+      queryClient.setQueryData(["hearts"], (old) => [...old, newHeart]);
+
+      return { previousHearts };
+    },
+
+    onError: (err, newHeart, context) => {
+      queryClient.setQueryData(["hearts"], context.previousHearts);
+    },
+
+    onSettled: () => {
+      queryClient.invalidateQueries({ queryKey: ["hearts"] });
     },
   });
+
   const { mutate: mutateToDelete } = useMutation({
     mutationFn: deleteHeart,
-    onSuccess: async () => {
-      await queryClient.invalidateQueries({ queryKey: ["hearts"] });
+    // onSuccess: async () => {
+    //   await queryClient.invalidateQueries({ queryKey: ["hearts"] });
+    // },
+    onMutate: async (newHeart) => {
+      await queryClient.cancelQueries({ queryKey: ["hearts"] });
+
+      const previousHearts = queryClient.getQueryData(["hearts"]);
+
+      queryClient.setQueryData(["hearts"], (old) => [...old, newHeart]);
+
+      return { previousHearts };
+    },
+
+    onError: (err, newHeart, context) => {
+      queryClient.setQueryData(["hearts"], context.previousHearts);
+    },
+
+    onSettled: () => {
+      queryClient.invalidateQueries({ queryKey: ["hearts"] });
     },
   });
   // let userId_fake;
@@ -70,14 +105,15 @@ export default function LikeBtn({ name, id }) {
       <ImageCount>
         <ImageWrapper name={name} onClick={likeBTN}>
           {filterdHeart1 ? (
-            <img name={name} src={HeartFull} alt="꽉찬하트"></img>
+            <img id="이미지" name={name} src={HeartFull} alt="꽉찬하트"></img>
           ) : (
-            <img name={name} src={HeartEmpty} alt="빈하트"></img>
+            <img id="이미지" name={name} src={HeartEmpty} alt="빈하트"></img>
           )}
         </ImageWrapper>
-        <StP> {filteredHearts?.length}</StP>{" "}
+        <StP for="이미지" name={name}>
+          {filteredHearts?.length}
+        </StP>
       </ImageCount>
-      <div></div>
     </>
   );
 }
