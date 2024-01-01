@@ -38,9 +38,11 @@ export default function Header() {
                     Swal.fire({
                       title: "로그아웃",
                       text: "다음에도 RE-PLAY에 와주세요 !",
+                      confirmButtonColor: '#20b2aa',
+                      confirmButtonText: '확인',
                       imageUrl: logo1,
-                      imageWidth: 200,
-                      imageHeight: 200,
+                      imageWidth: 130,
+                      imageHeight: 130,
                       imageAlt: "Custom image",
                     });
                     dispatch(logout());
