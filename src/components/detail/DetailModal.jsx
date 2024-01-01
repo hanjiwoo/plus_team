@@ -22,6 +22,10 @@ export default function DetailModal({ setIsEditing, selectedId }) {
     },
   });
   const editDone = async () => {
+    if (!post.text) return alert("내용을 입력해주세요");
+    if (!post.star || post.star === "별점을 선택해주세요")
+      return alert("별점을 입력해주세요");
+
     mutateToEdit({ post, selectedId });
 
     // await setDoc(doc(db, "posts", `${selectedId}`), {
@@ -29,6 +33,7 @@ export default function DetailModal({ setIsEditing, selectedId }) {
     //   content: post.text,
     // });
     setIsEditing(false);
+
     // navigate(`/detail/${id}`);
     // dispatch(toggle());
     // console.log(id, "일단아이디");
@@ -37,7 +42,7 @@ export default function DetailModal({ setIsEditing, selectedId }) {
   return (
     <ContentWrapper>
       <Content>
-        <select name="star" onChange={onChangeHandler}>
+        <select name="star" value={post.star} onChange={onChangeHandler}>
           <option>별점을 선택해주세요.</option>
           <option>⭐</option>
           <option>⭐⭐</option>
