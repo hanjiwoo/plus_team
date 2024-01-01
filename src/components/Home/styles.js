@@ -107,3 +107,7 @@ export const AllSlide = styled.div`
     color: black;
   }
 `;
+
+
+export const Nikname = styled.div`
+`
