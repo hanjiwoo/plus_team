@@ -18,10 +18,11 @@ export default function Header() {
   const navigateregister = () => {
     navigate("/Register");
   };
+
   const dispatch = useDispatch();
   const isLogin = useSelector((state) => state.authSlice.isLogin);
-  console.log(isLogin);
-
+  const displayName = useSelector((state) => state.authSlice?.displayName);
+  console.log(displayName);
   return (
     <>
       <StHeader>
@@ -32,6 +33,7 @@ export default function Header() {
           <Stbutton>
             {isLogin ? (
               <>
+                <div>{displayName} 님 안녕하세요 !</div>
                 <button
                   size="large"
                   onClick={() => {
