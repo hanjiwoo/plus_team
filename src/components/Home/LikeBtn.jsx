@@ -110,7 +110,7 @@ export default function LikeBtn({ name, id }) {
             <img id="이미지" name={name} src={HeartEmpty} alt="빈하트"></img>
           )}
         </ImageWrapper>
-        <StP for="이미지" name={name}>
+        <StP f name={name}>
           {filteredHearts?.length}
         </StP>
       </ImageCount>

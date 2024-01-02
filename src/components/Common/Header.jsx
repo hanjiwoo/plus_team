@@ -27,7 +27,9 @@ export default function Header() {
 
   const dispatch = useDispatch();
   const isLogin = useSelector((state) => state.authSlice.isLogin);
+
   const displayName = useSelector((state) => state.authSlice?.displayName);
+
   return (
     <>
       <StHeader>
