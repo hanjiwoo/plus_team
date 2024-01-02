@@ -36,6 +36,11 @@ export const StBtnInputWrapper = styled.div`
   gap: 30px;
 `;
 
+export const StText = styled.div`
+  color: white;
+  font-size: 16px;
+`;
+
 export const Stbutton = styled.div`
   display: flex;
   flex-direction: row;

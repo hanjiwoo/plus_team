@@ -9,6 +9,7 @@ import memory_src from "../../assets/images/memorygame.jpg";
 import speed_src from "../../assets/images/speedgame.jpg";
 import tic_src from "../../assets/images/tictactoe.jpg";
 import minesearch_src from "../../assets/images/minesearch.jpg";
+import respone_src from "../../assets/images/response.png";
 import { useQueryClient } from "@tanstack/react-query";
 import { getPosts } from "../detail/queryFn";
 
@@ -16,6 +17,7 @@ const photo1 = memory_src;
 const photo2 = minesearch_src;
 const photo3 = tic_src;
 const photo4 = speed_src;
+const photo5 = respone_src;
 export const gameList = [
   {
     id: "1",
@@ -58,9 +60,9 @@ export const gameList = [
   {
     id: "5",
     title: "반응속도게임",
-    photo: photo4,
+    photo: photo5,
     content: "당신의 반응 속도를 보여주세요!",
-    explain: `화면의 색이 바뀔 때 빠른 속도로 클릭을 해줍니다.
+    explain: `화면의 색이 바뀌는 순간 빠른 속도로 클릭을 해줍니다.
         당신의 반응 속도를 보여주세요 !`,
   },
 ];

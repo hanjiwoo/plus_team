@@ -1,5 +1,11 @@
 import React from "react";
-import { StBtnInputWrapper, StHeader, StLogo, Stbutton } from "./styles";
+import {
+  StBtnInputWrapper,
+  StHeader,
+  StLogo,
+  Stbutton,
+  StText,
+} from "./styles";
 import logo from "../../assets/images/logo.png";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
@@ -18,10 +24,10 @@ export default function Header() {
   const navigateregister = () => {
     navigate("/Register");
   };
+
   const dispatch = useDispatch();
   const isLogin = useSelector((state) => state.authSlice.isLogin);
-  // console.log(isLogin);
-
+  const displayName = useSelector((state) => state.authSlice?.displayName);
   return (
     <>
       <StHeader>
@@ -32,15 +38,18 @@ export default function Header() {
           <Stbutton>
             {isLogin ? (
               <>
+                <StText>{displayName} 님 안녕하세요 !</StText>
                 <button
                   size="large"
                   onClick={() => {
                     Swal.fire({
                       title: "로그아웃",
                       text: "다음에도 RE-PLAY에 와주세요 !",
+                      confirmButtonColor: "#20b2aa",
+                      confirmButtonText: "확인",
                       imageUrl: logo1,
-                      imageWidth: 200,
-                      imageHeight: 200,
+                      imageWidth: 130,
+                      imageHeight: 130,
                       imageAlt: "Custom image",
                     });
                     dispatch(logout());

@@ -7,12 +7,11 @@ import {
   GoogleAuthProvider,
 } from "firebase/auth";
 import { useDispatch } from "react-redux";
-import authSlice, { login } from "../../redux/modules/authSlice";
+import { login } from "../../redux/modules/authSlice";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import heart from "../../assets/images/heart.png";
 import erroricon from "../../assets/images/erroricon.png";
-
 
 export default function Login() {
   const [email, setEmail] = useState("");
@@ -41,7 +40,9 @@ export default function Login() {
       );
       Swal.fire({
         title: "로그인 성공",
-        text: userCredential.user.displayName + ` 님 환영합니다 !`,
+        text: userCredential.user.displayName + `님 환영합니다!`,
+        confirmButtonColor: "#20b2aa",
+        confirmButtonText: "확인",
         imageUrl: heart,
         imageWidth: 130,
         imageHeight: 130,
@@ -55,12 +56,12 @@ export default function Login() {
       Swal.fire({
         title: "로그인 실패",
         text: "이메일 및 비밀번호를 다시 확인 해 주시기 바랍니다.",
-        confirmButtonColor: '#ef4040',
-        confirmButtonText: '확인',
+        confirmButtonColor: "#ef4040",
+        confirmButtonText: "확인",
         imageUrl: erroricon,
         imageWidth: 130,
         imageHeight: 130,
-        imageAlt: "Custom image"
+        imageAlt: "Custom image",
       });
     }
   };
@@ -84,7 +85,9 @@ export default function Login() {
       );
       Swal.fire({
         title: "로그인 성공",
-        text: result.user.displayName + ` 님 환영합니다 !`,
+        text: result.user.displayName + `님 환영합니다!`,
+        confirmButtonColor: "#20b2aa",
+        confirmButtonText: "확인",
         imageUrl: heart,
         imageWidth: 130,
         imageHeight: 130,
@@ -222,7 +225,7 @@ const GoogleButton = styled.button`
   padding: 12px 0;
   font-size: 18px;
   border-radius: 10px;
-  &:hover{
+  &:hover {
     background-color: #ffc436;
   }
 `;
