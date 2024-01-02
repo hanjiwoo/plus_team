@@ -62,7 +62,7 @@ export const gameList = [
     title: "반응 속도 테스트",
     photo: photo5,
     content: "당신의 반응 속도를 보여주세요!",
-    explain: `화면의 색이 바뀌는 순간 빠른 속도로 화면을 클릭을 합니다.
+    explain: `화면의 색이 바뀌는 순간 빠른 속도로 화면을 클릭합니다.
         당신의 엄청난 반응 속도를 보여주세요 !`,
   },
 ];
