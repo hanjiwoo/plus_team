@@ -36,7 +36,7 @@ export const StBtnInputWrapper = styled.div`
   gap: 30px;
 `;
 
-export const Stbutton = styled.button`
+export const Stbutton = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: center;

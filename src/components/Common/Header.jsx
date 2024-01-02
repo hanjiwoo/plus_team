@@ -20,7 +20,7 @@ export default function Header() {
   };
   const dispatch = useDispatch();
   const isLogin = useSelector((state) => state.authSlice.isLogin);
-  console.log(isLogin);
+  // console.log(isLogin);
 
   return (
     <>

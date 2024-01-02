@@ -1,5 +1,5 @@
 import React from "react";
-import ball from "../../MemoryCardAsset/몬스터볼.png";
+import ball from "../../assets/images/ball.png";
 import styled, { css } from "styled-components";
 export default function SingleCard({ card, handleChoice, flipped, disabled }) {
   const handleClick = () => {
