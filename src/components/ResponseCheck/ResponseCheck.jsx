@@ -1,4 +1,4 @@
-import React, { useState, useRef, useCallback, useMemo } from "react";
+import React, { useState, useRef, useCallback } from "react";
 import { StContainer, Stscreen, StText, StTime } from "./style";
 
 const ResponseCheck = () => {
@@ -22,10 +22,12 @@ const ResponseCheck = () => {
       // 성급하게 클릭
       clearTimeout(timeout.current);
       setState("waiting");
-      setMessage(`
-      너무 성급해요 ! 
-      초록색이 되면 클릭하세요 !
-    `);
+      setMessage(
+        <>
+          너무 성급해요 ! <br />
+          초록색이 되면 클릭하세요 !
+        </>
+      );
     } else if (state === "now") {
       // 반응속도 체크
       endTime.current = new Date();
