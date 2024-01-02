@@ -11,6 +11,7 @@ import Register from "../pages/Register";
 import TicTacToe from "../pages/TicTacToe";
 import MineSearchPage from "./../pages/MineSearchPage";
 import ResponseCheckPage from "../pages/ResponseCheckPage";
+import GameInfo from "../pages/GameInfo";
 
 export default function Router() {
   return (
@@ -28,6 +29,7 @@ export default function Router() {
             <Route path="/tictactoe" element={<TicTacToe />} />
             <Route path="/minesearch" element={<MineSearchPage />} />
             <Route path="/responsecheck" element={<ResponseCheckPage />} />
+            <Route path="/gameinfo" element={<GameInfo />} />
             <Route path="*" element={<Navigate replace to="/" />} />
           </Route>
         </Routes>
