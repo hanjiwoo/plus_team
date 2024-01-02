@@ -42,14 +42,14 @@
 | 주제 선택 및 로고 디자인 | 회원가입/로그인 | 게임 구현 (5), 메인페이지 | 게임 구현 (2)(4), css 전반 | 게임 구현 (1)(3), 상세페이지 |
 
 ### 🔑 난이도별 충족 요구 사항
-**상**
-- 좋아요 기능에 리액트쿼리 Optimistic Update 적용
-- form 유효성검사에 react-hook-form 라이브러리 적용 
-**중**
-- redux 외의 다른 전역상태관리 라이브러리인 Context API 적용
-**하**
-- redux-toolkit 적용
-- react-query 로 서버 상태 관리하기
+- **상**
+    - 좋아요 기능에 리액트쿼리 Optimistic Update 적용
+    - form 유효성검사에 react-hook-form 라이브러리 적용
+- **중**
+    - redux 외의 다른 전역상태관리 라이브러리인 Context API 적용
+- **하**
+    - redux-toolkit 적용
+    - react-query 로 서버 상태 관리하기
 
 ### 🚩 개발 내용
 #### 💻 개발 환경
