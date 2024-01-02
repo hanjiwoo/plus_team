@@ -21,7 +21,7 @@ const photo5 = respone_src;
 export const gameList = [
   {
     id: "1",
-    title: "메모리게임",
+    title: "메모리 게임",
     photo: photo1,
     content: "포켓몬의 짝을 찾아주세요!",
     explain: `뒤집어져 있는 카드를 하나씩 열어보면서 
@@ -30,7 +30,7 @@ export const gameList = [
   },
   {
     id: "2",
-    title: "지뢰찾기",
+    title: "지뢰 찾기",
     photo: photo2,
     content: "펑 ~~! 지뢰를 피해 게임을 성공하세요!",
     explain: `무작위로 지뢰가 깔려 있습니다.
@@ -50,7 +50,7 @@ export const gameList = [
   },
   {
     id: "4",
-    title: "순발력게임",
+    title: "순발력 게임",
     photo: photo4,
     content: "누구보다 빠른 속도를 보여주세요!",
     explain: `1 ~ 50 까지의 숫자가 무작위로 배치됩니다. 
@@ -59,11 +59,11 @@ export const gameList = [
   },
   {
     id: "5",
-    title: "반응속도게임",
+    title: "반응 속도 테스트",
     photo: photo5,
     content: "당신의 반응 속도를 보여주세요!",
-    explain: `화면의 색이 바뀌는 순간 빠른 속도로 클릭을 해줍니다.
-        당신의 반응 속도를 보여주세요 !`,
+    explain: `화면의 색이 바뀌는 순간 빠른 속도로 화면을 클릭합니다.
+        당신의 엄청난 반응 속도를 보여주세요 !`,
   },
 ];
 
